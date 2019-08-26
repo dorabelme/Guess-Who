@@ -2,14 +2,14 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import axios from "axios";
-import './login.scss';
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import "./login.scss";
 
 import Navbar from "../Navbar/Navbar";
 
 function Register({ touched, errors }) {
     return (
-        <div className='loginPage'>
+        <div className="loginPage">
             <Navbar />
             <Form className="form registerForm">
                 <div className="form-box">
@@ -44,11 +44,16 @@ function Register({ touched, errors }) {
                 </div>
                 <button type="submit" className="btn">
                     Register
-                </button>
+        </button>
             </Form>
-            <div className='login-redirect'>
-                <h4>By registering, you automatically accept the Terms and Policies of Guess Who app.</h4>
-                <Link className='login-link' to='/login'>Have an account? Sign In</Link>
+            <div className="login-redirect">
+                <h4>
+                    By registering, you automatically accept the Terms and Policies of
+                    Guess Who app.
+        </h4>
+                <Link className="login-link" to="/login">
+                    Have an account? Sign In
+        </Link>
             </div>
         </div>
     );
@@ -69,16 +74,16 @@ export default withFormik({
         email: Yup.string().required("Email is required")
     }),
     handleSubmit(values, formikBag) {
-        const url = "http://localhost:5000/api/login";
-        axios
+        const url = "https://lambda-guess-who.herokuapp.com/api/auth/register";
+        axiosWithAuth()
             .post(url, values)
             .then(res => {
-                localStorage.setItem("token", res.data.payload);
-                formikBag.props.history.push("/bubblepage");
+                console.log(res);
+                localStorage.setItem("token", res.data.token);
+                formikBag.props.history.push("/guesswho");
             })
             .catch(e => {
                 console.log(e.response);
             });
     }
 })(Register);
-

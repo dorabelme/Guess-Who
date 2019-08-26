@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Redirect } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
@@ -18,7 +18,21 @@ const protectRoute = Component => props => {
 
 const ProtectedGuessWhoPage = protectRoute(GuessWhoPage);
 
-
+const initialState = {
+    username: '',
+    token: '',
+    userId: '',
+    tweet: '',
+    tweeters: [],
+    answer: {},
+    signingUp: false,
+    loggingIn: false,
+    gettingTwitter: false,
+    postingScore: false,
+    error: '',
+    welcome: '',
+    highScore: 0
+}
 
 function App() {
   return (

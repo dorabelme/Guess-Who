@@ -2,8 +2,8 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import axios from "axios";
-import './login.scss';
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import "./login.scss";
 
 import Navbar from "../Navbar/Navbar";
 
@@ -34,12 +34,14 @@ function Login({ touched, errors }) {
                 </div>
                 <button type="submit" className="btn">
                     Sign In
-                </button>
-                <div className='login-redirect'>
-                    <Link className='login-link' to='/register'>New User? Register Here</Link>
+        </button>
+                <div className="login-redirect">
+                    <Link className="login-link" to="/register">
+                        New User? Register Here
+          </Link>
                 </div>
             </Form>
-             </div>
+        </div>
     );
 }
 export default withFormik({
@@ -56,16 +58,16 @@ export default withFormik({
             .required("Password is required")
     }),
     handleSubmit(values, formikBag) {
-        const url = "http://localhost:5000/api/login";
-        axios
+        const url = "https://lambda-guess-who.herokuapp.com/api/auth/login";
+        axiosWithAuth()
             .post(url, values)
             .then(res => {
-                localStorage.setItem("token", res.data.payload);
-                formikBag.props.history.push("/bubblepage");
+                console.log(res);
+                localStorage.setItem("token", res.data.token);
+                formikBag.props.history.push("/guesswho");
             })
             .catch(e => {
                 console.log(e.response);
             });
     }
 })(Login);
-
