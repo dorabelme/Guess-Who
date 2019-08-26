@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import "./Question.scss";
 import QuestionCard from "./QuestionCard";
 
 const QuestionList = () => {
-  const [question, setQuestion] = useState("");
+  let [question, setQuestion] = useState("");
 
-  const [answer, setAnswer] = useState([]);
+  let [answer, setAnswer] = useState([]);
 
-  const [candidates, setCandidates] = useState([]);
+  let [candidates, setCandidates] = useState([]);
 
-  const [guess, setGuess] = useState("");
+  // let [guess, setGuess] = useState("");
 
-  const [score, setScore] = useState(0);
+  // let [score, setScore] = useState(0);
 
-  const [changeQuestion, setChangeQuestion] = useState(false);
+  // let [changeQuestion, setChangeQuestion] = useState(false);
 
-  const [tries, setTries] = useState(3);
+  // let [tries, setTries] = useState(3);
 
-  const [gameover, setGameover] = useState(false);
+  // let [gameover, setGameover] = useState(false);
 
-  useEffect(() => {
-    if (guess === answer) {
-      setScore(score + 100);
-      setChangeQuestion(!changeQuestion);
-    } else if (tries <= 0) {
-      setGameover(true);
-    } else {
-      tries--;
-    }
+  // useEffect(() => {
+  //   if (guess === answer) {
+  //     setScore(score + 100);
+  //     setChangeQuestion(!changeQuestion);
+  //   } else if (tries <= 0) {
+  //     setGameover(true);
+  //   } else {
+  //     tries--;
+  //   }
 
-    if (gameover) {
-      setGameover(false);
-    }
-  }, [guess]);
+  //   if (gameover) {
+  //     setGameover(false);
+  //   }
+  // }, [guess]);
 
   useEffect(() => {
     axiosWithAuth()
@@ -45,20 +47,23 @@ const QuestionList = () => {
         setCandidates(res.data.candidates);
       })
       .catch(err => console.log(err.response));
-  }, [changeQuestion]);
+  }, []);
 
   return (
-    <div>
-      <p>{question}</p>
+    <Card className="question-list-card">
+      <Card.Description className="question">{question}</Card.Description>
       {candidates.map(candidate => (
         <QuestionCard
+          key={candidate.id.id_str}
           question={question}
           imgUrl={candidate.id.profile_image_url}
           name={candidate.id.name}
           handle={candidate.handle}
-          onClick={setGuess(candidate.name)}
+          followers={candidate.id.followers_count}
         />
       ))}
-    </div>
+    </Card>
   );
 };
+
+export default QuestionList;

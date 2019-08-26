@@ -1,0 +1,26 @@
+.question-list-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  background: transparent;
+
+  .question {
+    margin: 5% auto 5% auto;
+    width: 80%;
+  }
+
+  .question-card {
+    display: flex;
+    flex-direction: row;
+    min-width: 90%;
+    margin: 10% auto 10% auto;
+
+    .card-imgs {
+      width: 40%;
+    }
+
+    .card-content {
+      width: 50%;
+    }
+  }
+}
