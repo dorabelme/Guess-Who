@@ -1,9 +1,9 @@
 import React from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const GuessWhoPage = () => {
+const MainPage = () => {
   const handleSubmit = () => {
-    const url = "https://lambda-guess-who.herokuapp.com/api/question";
+    const url = "https://lambda-guess-who.herokuapp.com/";
     axiosWithAuth()
       .get(url)
       .then(res => {
@@ -18,4 +18,4 @@ const GuessWhoPage = () => {
   return <button onClick={handleSubmit} />;
 };
 
-export default GuessWhoPage;
+export default MainPage;
