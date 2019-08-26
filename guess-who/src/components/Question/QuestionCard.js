@@ -7,7 +7,7 @@ const QuestionCard = props => {
     const [tweet, setTweet] = useState("tweet here");
 
     //State for the 3 candidates on the card
-    const [candidates, setCandidates] = useState([]);
+    const [candidates, setCandidates] = useState({});
 
     //Category array that includes each question card
     // const [category, setCategory] = useState([]);
