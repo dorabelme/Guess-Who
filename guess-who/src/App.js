@@ -89,14 +89,11 @@ function App(props) {
       <Route
         path="/profile"
         render={props => (
-          <ProtectedProfileCard
-            {...props}
-            username={state.username}
-            highscore={state.highScore}
-          />
+          <ProtectedProfileCard {...props} username={state.username} />
         )}
       />
     </div>
   );
 }
+
 export default App;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Card, Icon } from "semantic-ui-react";
+import { Card, Icon, Label } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 import QuestionCard from "./QuestionCard";
@@ -52,27 +52,32 @@ const QuestionList = () => {
   }, []);
 
   return (
-    <Card className="question-list-card">
-      <div className="top-row">
-        <button>Home</button>
-        <img></img>
-      </div>
-      <div className="question">
-        <h2>Who's Tweet is it?</h2>
-        <p>"{question}"</p>
-      </div>
-      {candidates.map(candidate => (
-        <QuestionCard
-          key={candidate.id.id_str}
-          question={question}
-          imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
-          name={candidate.id.name}
-          handle={candidate.handle}
-          followers={candidate.id.followers_count}
-        />
-      ))}
-    </Card>
+    <>
+      <Card className="question-list-card">
+        <div className="top-row">
+          <button>Home</button>
+          <img></img>
+        </div>
+        <div className="question">
+          <h2>Who's Tweet is it?</h2>
+          <p>"{question}"</p>
+        </div>
+        {candidates.map(candidate => (
+          <QuestionCard
+            key={candidate.id.id_str}
+            question={question}
+            imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
+            name={candidate.id.name}
+            handle={candidate.handle}
+            followers={candidate.id.followers_count}
+          />
+        ))}
+      </Card>
+      <Label as="a" image>
+        <img src="https://react.semantic-ui.com/images/avatar/large/elliot.jpg" />
+        Score
+      </Label>
+    </>
   );
 };
-
 export default QuestionList;
