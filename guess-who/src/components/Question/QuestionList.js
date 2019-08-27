@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Card } from "semantic-ui-react";
+import { Card, Icon } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 import QuestionCard from "./QuestionCard";
@@ -59,7 +59,7 @@ const QuestionList = () => {
       </div>
       <div className="question">
         <h2>Who's Tweet is it?</h2>
-        <p>{question}</p>
+        <p>"{question}"</p>
       </div>
       {candidates.map(candidate => (
         <QuestionCard
