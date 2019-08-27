@@ -11,10 +11,10 @@ const QuestionCard = props => {
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
           <Card.Meta>@{props.handle}</Card.Meta>
-        </Card.Content>
-        <Card.Content extra>
-          <Icon name="users" />
-          Followers: {props.followers}
+          <div className="followerCount">
+            <Icon name="users" />
+            Followers: {props.followers}
+          </div>
         </Card.Content>
       </Card>
     </div>
