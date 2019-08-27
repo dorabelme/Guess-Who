@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Image, Icon } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
-
 const QuestionCard = props => {
   return (
     <div>
@@ -20,5 +19,4 @@ const QuestionCard = props => {
     </div>
   );
 };
-
 export default QuestionCard;
