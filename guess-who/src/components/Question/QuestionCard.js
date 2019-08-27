@@ -6,6 +6,10 @@ import "./Question.scss";
 const QuestionCard = props => {
   return (
     <div>
+      <div className="top-row">
+        <button></button>
+        <img></img>
+      </div>
       <Card className="question-card">
         <Image className="card-imgs" src={props.imgUrl}></Image>
         <Card.Content className="card-content">
