@@ -7,7 +7,10 @@ const QuestionCard = props => {
   return (
     <div>
       <Card className="question-card">
-        <Image className="card-imgs" src={props.imgUrl}></Image>
+        <Image
+          className="card-imgs"
+          src={[props.imgUrl, "./birdLogo.jpeg"]}
+        ></Image>
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
           <Card.Meta>@{props.handle}</Card.Meta>

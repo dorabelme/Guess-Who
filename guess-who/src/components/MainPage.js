@@ -3,8 +3,9 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./mainpage.scss";
-import { UserContext } from "../contexts/UserContext";
+// import { UserContext } from "../contexts/UserContext";
 import Navbar from "./Navbar/Navbar";
+import NavbarMain from "./Navbar/Navbar2";
 
 const MainPage = props => {
   const handleSubmit = () => {
@@ -22,7 +23,7 @@ const MainPage = props => {
   };
   return (
     <>
-      <Navbar />
+      <NavbarMain />
       <div className="upperNav">
         <Card>
           <Image

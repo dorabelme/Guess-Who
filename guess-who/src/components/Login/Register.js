@@ -42,8 +42,7 @@ function Register({ touched, errors }) {
           />
           <p>{touched.password && errors.password}</p>
         </div>
-        <button type="submit" className="btn">
-          Register
+       <button type="submit" className="btn"> Register
         </button>
       </Form>
       <div className="login-redirect">
@@ -51,7 +50,7 @@ function Register({ touched, errors }) {
           By registering, you automatically accept the Terms and Policies of
           Guess Who app.
         </h4>
-        <Link className="login-link" to="/login">
+        <Link className="login-link" to="/">
           Have an account? Sign In
         </Link>
       </div>
