@@ -2,19 +2,18 @@
   
 	.profile-card {
 	  display: flex;
+	  flex-direction:column;
 	  width: 100%;
-	  margin: 0 auto;
-	  margin-top: 2rem;
-	  height: 8rem;
-	  width: 10rem;
-	  flex-direction: column;
 	  justify-content: center;
-	  align-items: center;
+	  align-content: center;
+
+	  img{
+		align-content: center;
+		width:100%;
+	  }
 	
   
-	.profile-card > .image {
-	  width: 6rem;
-	}
+	
   
 	
   

@@ -6,10 +6,10 @@ import "./Profile.scss";
 
 //Dummy Data before state is able to be passed from login
 const profile = {
-	avatar: "https://react.semantic-ui.com/images/avatar/large/elliot.jpg",
+	avatar: "https://images.dog.ceo/breeds/whippet/n02091134_39.jpg",
 	name: "William",
 	score: "35",
-	settings: "Gear Icon",
+	settings: "Settings",
 	share: "Share Icon to Twitter"
 }
 
@@ -44,22 +44,27 @@ function ProfileCard() {
 
 	return (
 		<div className="profile-card">
+
 			{/* {profile.map(profiles => {
         return <ProfileCard key={profiles.config} profiles={profiles} />;
 	  })} 
 	 }; 
 	  */}
-			<Card className=".ui.card">
+			<Card>
 				<Image
 					src={profile.avatar}
+
 				/>
 				<Card.Content>
 					<Card.Header>{profile.name}</Card.Header>
-
+					<h2>{profile.score}</h2>
+					{profile.settings}
+					<h1>Share to Twitter</h1>
 				</Card.Content>
 			</Card>
-
 		</div>
+
+
 	);
 }
 export default ProfileCard;
