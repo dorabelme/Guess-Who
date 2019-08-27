@@ -6,15 +6,19 @@ import "./Question.scss";
 const QuestionCard = props => {
   return (
     <div>
+      <div className="top-row">
+        <button></button>
+        <img></img>
+      </div>
       <Card className="question-card">
         <Image className="card-imgs" src={props.imgUrl}></Image>
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
           <Card.Meta>@{props.handle}</Card.Meta>
-        </Card.Content>
-        <Card.Content extra>
-          <Icon name="users" />
-          Followers: {props.followers}
+          <div className="followerCount">
+            <Icon name="users" />
+            Followers: {props.followers}
+          </div>
         </Card.Content>
       </Card>
     </div>

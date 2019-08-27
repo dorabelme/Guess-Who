@@ -6,64 +6,73 @@ import "./Question.scss";
 import QuestionCard from "./QuestionCard";
 
 const QuestionList = () => {
-	let [question, setQuestion] = useState("");
+  let [question, setQuestion] = useState("");
 
-	let [answer, setAnswer] = useState([]);
+  // let [answer, setAnswer] = useState([]);
 
-	let [candidates, setCandidates] = useState([]);
+  let [candidates, setCandidates] = useState([]);
 
-	// let [guess, setGuess] = useState("");
+  let [imgUrl, setImgUrl] = useState("");
 
-	// let [score, setScore] = useState(0);
+  // let [guess, setGuess] = useState("");
 
-	// let [changeQuestion, setChangeQuestion] = useState(false);
+  // let [score, setScore] = useState(0);
 
-	// let [tries, setTries] = useState(3);
+  // let [changeQuestion, setChangeQuestion] = useState(false);
 
-	// let [gameover, setGameover] = useState(false);
+  // let [tries, setTries] = useState(3);
 
-	// useEffect(() => {
-	//   if (guess === answer) {
-	//     setScore(score + 100);
-	//     setChangeQuestion(!changeQuestion);
-	//   } else if (tries <= 0) {
-	//     setGameover(true);
-	//   } else {
-	//     tries--;
-	//   }
+  // let [gameover, setGameover] = useState(false);
 
-	//   if (gameover) {
-	//     setGameover(false);
-	//   }
-	// }, [guess]);
+  // useEffect(() => {
+  //   if (guess === answer) {
+  //     setScore(score + 100);
+  //     setChangeQuestion(!changeQuestion);
+  //   } else if (tries <= 0) {
+  //     setGameover(true);
+  //   } else {
+  //     tries--;
+  //   }
 
-	useEffect(() => {
-		axiosWithAuth()
-			.get("https://lambda-guess-who.herokuapp.com/api/question")
-			.then(res => {
-				console.log(res);
-				setQuestion(res.data.question);
-				setAnswer(res.data.answer);
-				setCandidates(res.data.candidates);
-			})
-			.catch(err => console.log(err.response));
-	}, []);
+  //   if (gameover) {
+  //     setGameover(false);
+  //   }
+  // }, [guess]);
 
-	return (
-		<Card className="question-list-card">
-			<Card.Description className="question">{question}</Card.Description>
-			{candidates.map(candidate => (
-				<QuestionCard
-					key={candidate.id.id_str}
-					question={question}
-					imgUrl={candidate.id.profile_image_url}
-					name={candidate.id.name}
-					handle={candidate.handle}
-					followers={candidate.id.followers_count}
-				/>
-			))}
-		</Card>
-	);
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://lambda-guess-who.herokuapp.com/api/question")
+      .then(res => {
+        console.log(res);
+        setQuestion(res.data.question);
+        // setAnswer(res.data.answer);
+        setCandidates(res.data.candidates);
+      })
+      .catch(err => console.log(err.response));
+  }, []);
+
+  return (
+    <Card className="question-list-card">
+      <div className="top-row">
+        <button>Home</button>
+        <img></img>
+      </div>
+      <div className="question">
+        <h2>Who's Tweet is it?</h2>
+        <p>{question}</p>
+      </div>
+      {candidates.map(candidate => (
+        <QuestionCard
+          key={candidate.id.id_str}
+          question={question}
+          imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
+          name={candidate.id.name}
+          handle={candidate.handle}
+          followers={candidate.id.followers_count}
+        />
+      ))}
+    </Card>
+  );
 };
 
 export default QuestionList;
