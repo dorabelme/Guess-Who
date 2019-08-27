@@ -74,5 +74,4 @@ const QuestionList = () => {
     </Card>
   );
 };
-
 export default QuestionList;

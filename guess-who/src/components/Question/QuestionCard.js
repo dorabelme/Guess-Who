@@ -14,6 +14,10 @@ const QuestionCard = props => {
 
   return (
     <div>
+      <div className="top-row">
+        <button></button>
+        <img></img>
+      </div>
       <Card className="question-card">
         <Image className="card-imgs" src={props.imgUrl} onError={addDefaultSrc}></Image>
         <Card.Content className="card-content">
