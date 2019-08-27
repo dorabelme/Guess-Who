@@ -34,47 +34,61 @@ const initialState = {
   highScore: 0
 };
 
-function App(props) {
-  const [state, setState] = useState(initialState);
-
-  const getLogin = values => {
-    const url = "https://lambda-guess-who.herokuapp.com/api/auth/login";
-    axiosWithAuth()
-      .post(url, values)
-      .then(res => {
-        console.log("data from login:", res.config);
-        localStorage.setItem("token", res.data.token);
-        console.log("username", JSON.parse(res.config.data).username);
-        let usernameData = JSON.parse(res.config.data).username;
-        setState({ ...initialState, username: usernameData });
-        props.history.push("/guesswho");
+let parseToken = function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(function(c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
       })
-      .catch(e => {
-        console.log(e.response);
-      });
-  };
-
-  console.log("the set data", state);
-
-  return (
-    <div className="App">
-      <Route
-        exact
-        path="/"
-        render={props => <Login {...props} getLogin={getLogin} />}
-      />
-      <Route exact path="/register" component={Register} />
-
-      <Route path="/guesswho" component={ProtectedGuessWhoPage} />
-      <Route path="/questions" component={ProtectedQuestionList} />
-      <Route
-        path="/profile"
-        render={props => (
-          <ProtectedProfileCard {...props} username={state.username} />
-        )}
-      />
-    </div>
+      .join("")
   );
-}
 
+  return JSON.parse(jsonPayload);
+
+  function App(props) {
+    const [state, setState] = useState(initialState);
+
+    const getLogin = values => {
+      const url = "https://lambda-guess-who.herokuapp.com/api/auth/login";
+      axiosWithAuth()
+        .post(url, values)
+        .then(res => {
+          console.log("data from login:", res.config);
+          localStorage.setItem("token", res.data.token);
+          console.log("username", JSON.parse(res.config.data).username);
+          let usernameData = JSON.parse(res.config.data).username;
+          setState({ ...initialState, username: usernameData });
+          props.history.push("/guesswho");
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    };
+
+    console.log("the set data", state);
+
+    return (
+      <div className="App">
+        <Route
+          exact
+          path="/"
+          render={props => <Login {...props} getLogin={getLogin} />}
+        />
+        <Route exact path="/register" component={Register} />
+
+        <Route path="/guesswho" component={ProtectedGuessWhoPage} />
+        <Route path="/questions" component={ProtectedQuestionList} />
+        <Route
+          path="/profile"
+          render={props => (
+            <ProtectedProfileCard {...props} username={state.username} />
+          )}
+        />
+      </div>
+    );
+  }
+};
 export default App;
