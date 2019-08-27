@@ -4,6 +4,7 @@ import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
 const ProfileCard = props => {
+  console.log(props);
   //state set for profile data
   const [profile, setProfile] = useState([]);
 
@@ -22,23 +23,21 @@ const ProfileCard = props => {
 
   */
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get("https://lambda-guess-who.herokuapp.com/api/auth/login")
-      .then(response => {
-        setProfile(response.data);
-        console.log("DataINeed", response);
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get("https://lambda-guess-who.herokuapp.com/api/auth/login")
+  //     .then(response => {
+  //       setProfile(response.data);
+  //       console.log("DataINeed", response);
+  //     })
+  //     .catch(error => {
+  //       console.log(error.response);
+  //     });
+  // }, []);
 
   return (
     <div className="profile-card">
-      {profile.map(profiles => {
-        return <ProfileCard key={profiles.config} profiles={profiles} />;
-      })}
+      <h1>{props.username}</h1>
     </div>
   );
 };

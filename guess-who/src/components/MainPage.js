@@ -3,7 +3,8 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./mainpage.scss";
-
+// import { UserContext } from "../contexts/UserContext";
+import Navbar from "./Navbar/Navbar";
 import NavbarMain from "./Navbar/Navbar2";
 
 const MainPage = props => {
@@ -12,8 +13,8 @@ const MainPage = props => {
     axiosWithAuth()
       .get(url)
       .then(res => {
-        console.log(res);
-        // localStorage.setItem("token", res.data.token);
+        console.log("on submit:", res);
+        // localStorage.setItem("token", res.data.payload);
         props.history.push("/questions");
       })
       .catch(e => {

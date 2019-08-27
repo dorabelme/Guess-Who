@@ -58,16 +58,17 @@ export default withFormik({
       .required("Password is required")
   }),
   handleSubmit(values, formikBag) {
-    const url = "https://lambda-guess-who.herokuapp.com/api/auth/login";
-    axiosWithAuth()
-      .post(url, values)
-      .then(res => {
-        console.log(res);
-        localStorage.setItem("token", res.data.token);
-        formikBag.props.history.push("/guesswho");
-      })
-      .catch(e => {
-        console.log(e.response);
-      });
+    formikBag.props.getLogin(values);
+    // const url = "https://lambda-guess-who.herokuapp.com/api/auth/login";
+    // axiosWithAuth()
+    //   .post(url, values)
+    //   .then(res => {
+    //     console.log(res);
+    //     localStorage.setItem("token", res.data.token);
+    //     formikBag.props.history.push("/guesswho");
+    //   })
+    //   .catch(e => {
+    //     console.log(e.response);
+    //   });
   }
 })(Login);
