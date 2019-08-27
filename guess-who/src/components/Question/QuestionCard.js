@@ -11,7 +11,7 @@ const QuestionCard = props => {
 
   return (
     <div>
-      <Card className="question-card">
+      <Card className="candidate-card">
         <Image className="card-imgs" src={props.imgUrl} onError={addDefaultSrc}></Image>
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
