@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Card } from "semantic-ui-react";
+import { Card, Icon } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 import QuestionCard from "./QuestionCard";
@@ -8,9 +8,11 @@ import QuestionCard from "./QuestionCard";
 const QuestionList = () => {
   let [question, setQuestion] = useState("");
 
-  let [answer, setAnswer] = useState([]);
+  // let [answer, setAnswer] = useState([]);
 
   let [candidates, setCandidates] = useState([]);
+
+  let [imgUrl, setImgUrl] = useState("");
 
   // let [guess, setGuess] = useState("");
 
@@ -43,7 +45,7 @@ const QuestionList = () => {
       .then(res => {
         console.log(res);
         setQuestion(res.data.question);
-        setAnswer(res.data.answer);
+        // setAnswer(res.data.answer);
         setCandidates(res.data.candidates);
       })
       .catch(err => console.log(err.response));
@@ -51,12 +53,19 @@ const QuestionList = () => {
 
   return (
     <Card className="question-list-card">
-      <Card.Description className="question">{question}</Card.Description>
+      <div className="top-row">
+        <button>Home</button>
+        <img></img>
+      </div>
+      <div className="question">
+        <h2>Who's Tweet is it?</h2>
+        <p>"{question}"</p>
+      </div>
       {candidates.map(candidate => (
         <QuestionCard
           key={candidate.id.id_str}
           question={question}
-          imgUrl={candidate.id.profile_image_url}
+          imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
           name={candidate.id.name}
           handle={candidate.handle}
           followers={candidate.id.followers_count}
