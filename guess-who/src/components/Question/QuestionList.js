@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Card, Icon } from "semantic-ui-react";
+import { Card, Button, Label, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 import QuestionCard from "./QuestionCard";
+
 
 const QuestionList = () => {
   let [question, setQuestion] = useState("");
@@ -54,9 +55,19 @@ const QuestionList = () => {
   return (
     <Card className="question-list-card">
       <div className="top-row">
-        <button>Home</button>
-        <img></img>
+        <Button.Group attached='top'>
+          <Button className="home-button">Home</Button>
+          <Button className="hearts">
+            <Image src="./heart.png" className="heart" id="1"></Image>
+            <Image src="./heart.png" className="heart" id="2"></Image>
+            <Image src="./heart.png" className="heart" id="3"></Image>
+          </Button>
+        </Button.Group>
       </div>
+      <Label className="score-label">
+        Score:
+        <Label.Detail>999</Label.Detail>
+      </Label>
       <div className="question">
         <h2>Who's Tweet is it?</h2>
         <p>"{question}"</p>
