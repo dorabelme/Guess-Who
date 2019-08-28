@@ -1,0 +1,40 @@
+.navbarAll {
+  width: 100%;
+  background-color: white;
+  height: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+   .leftNavbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .rightNavbar {
+      display: flex;
+      flex-direction: row;
+  }
+
+  img {
+    padding-left: 1rem;
+    width: 4.5rem;
+  }
+
+  img.heart {
+      padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #173ad4;
+    letter-spacing: -1px;
+    padding-left: 0.5rem;
+    margin-top: 1rem;
+    white-space: nowrap;
+  }
+}

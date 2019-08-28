@@ -4,9 +4,9 @@ import { Card, Button, Label, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 import QuestionCard from "./QuestionCard";
+import NavbarThree from "../Navbar/Navbar3";
 
-
-const QuestionList = () => {
+const QuestionList = ({ username, highScore, setState }) => {
   let [question, setQuestion] = useState("");
 
   let [answer, setAnswer] = useState([]);
@@ -40,6 +40,13 @@ const QuestionList = () => {
   //   }
   // }, [guess]);
 
+  // const handleSubmit = () => {
+  //   setAnswer();
+  //   if (answer === answer) {
+  //     setState({ ...state, highScore: highScore + 100 });
+  //   }
+  // };
+
   useEffect(() => {
     axiosWithAuth()
       .get("https://lambda-guess-who.herokuapp.com/api/question")
@@ -48,17 +55,18 @@ const QuestionList = () => {
         setQuestion(res.data.question);
         // setAnswer(res.data.answer);
         setCandidates(res.data.candidates);
+        setAnswer(res.data.answer);
       })
       .catch(err => console.log(err.response));
   }, []);
 
   return (
     <Card className="question-list-card">
-      <div className="top-row">
+      {/* <div className="top-row">
         <Button.Group attached='top'>
           <Button href="/guesswho" className="home-button">Home</Button>
           <Label className="score-label">
-            <Label.Detail className="score">Score: 999</Label.Detail>
+            <Label.Detail className="score">Score: {highScore}</Label.Detail>
           </Label>
           <Button className="hearts">
             {//Set id of each heart to reference with life variable
@@ -68,7 +76,8 @@ const QuestionList = () => {
             <Image src="./heart.png" className="heart" id="3"></Image>
           </Button>
         </Button.Group>
-      </div>
+      </div> */}
+      <NavbarThree highScore={highScore} />
       <div className="opponents">
       <div className="opponents-div-1">
         <Label color="teal" image>
@@ -115,5 +124,5 @@ const QuestionList = () => {
     </Card>
   );
 };
-
 export default QuestionList;
+
