@@ -5,7 +5,8 @@ import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import NavbarMain from "../Navbar/Navbar2";
 import "../Navbar/navbarTwo.scss";
-
+import GuessWhoPage from '../GuessWhoPage';
+import { Route, NavLink } from "react-router-dom";
 import "./Profile.scss";
 
 //Dummy Data before state is able to be passed from login
@@ -25,17 +26,16 @@ const profile = {
 export default function ProfileCard({ username, highScore }) {
 	// const [avatar, getAvatar] = useState({})
 
-	highScore = highScore + 3;
-	const newScores = highScore * 10;
-	const divStyle = {
-		width: `${newScores}`,
-		backgroundColor: '#4CAF50 !important',
-		textAlign: 'right',
-		paddingTop: '10px',
-		paddingBottom: '10px',
-		color: 'white'
+	const newScores = highScore;
+	// const divStyle = {
+	// 	width: `${newScores}`,
+	// 	backgroundColor: '#4CAF50 !important',
+	// 	textAlign: 'right',
+	// 	paddingTop: '10px',
+	// 	paddingBottom: '10px',
+	// 	color: 'white'
 
-	};
+	// };
 
 
 	// 	const yourAvatar = () => {
@@ -69,10 +69,11 @@ export default function ProfileCard({ username, highScore }) {
 	  */}
 
 			<NavbarMain />
-			<button class="ui left labeled icon button">
+		<NavLink exact to="/guesswho"> <button class="ui left labeled icon button"> 
 				<i class="left arrow icon"></i>
 				Go Back
 			</button>
+		</NavLink>	
 			<div className="profile-card">
 				<Card>
 					<Image src={profile.avatar} />
@@ -81,7 +82,7 @@ export default function ProfileCard({ username, highScore }) {
 						<h2>{profile.header}</h2>
 						<div class="container">
 
-							<div styles={divStyle} /></div>
+							<div className="skills scores" /></div>
 						<h2>{newScores} Tweety Points!</h2>
 						{/*profile.settings*/}
 						<h3>{100 - newScores} points till the next level!</h3>
