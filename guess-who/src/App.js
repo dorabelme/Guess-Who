@@ -85,11 +85,21 @@ function App(props) {
       <Route exact path="/register" component={Register} />
 
       <Route path="/guesswho" component={ProtectedGuessWhoPage} />
-      <Route path="/questions" component={ProtectedQuestionList} />
+      <Route
+        path="/questions"
+        render={props => (
+          <ProtectedQuestionList {...props} highScore={state.highScore} />
+        )}
+      />
       <Route
         path="/profile"
         render={props => (
-          <ProtectedProfileCard {...props} username={state.username} />
+          <ProtectedProfileCard
+            {...props}
+            username={state.username}
+            highscore={state.highScore}
+            setState={setState}
+          />
         )}
       />
     </div>

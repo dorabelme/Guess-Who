@@ -1,10 +1,12 @@
 .question-list-card {
-  display       : flex;
+  display: flex;
   flex-direction: column;
-  min-width     : 100%;
-  background-image: linear-gradient(135deg,
-      rgba(31, 4, 184, 0.8) 0%,
-      rgba(14, 171, 199, 0.8) 100%) !important;
+  min-width: 100%;
+  background-image: linear-gradient(
+    135deg,
+    rgba(31, 4, 184, 0.8) 0%,
+    rgba(14, 171, 199, 0.8) 100%
+  ) !important;
 
   .question {
     margin: 5% auto 5% auto;
@@ -18,17 +20,39 @@
   }
 
   .question-card {
-    display       : flex;
+    display: flex;
     flex-direction: row;
-    width     : 90%;
-    margin        : 5% auto 5% auto !important;
+    width: 90%;
+    margin: 5% auto 5% auto !important;
 
     .card-imgs {
-      width: 30%;
+      width: 100px;
+      height: 100px;
     }
 
     .card-content {
       width: 50%;
+    }
+  }
+
+  .top-row {
+    .home-button {
+      border-right: 1px solid grey;
+    }
+
+    .hearts {
+      display: flex;
+      max-width: 50%;
+
+      .heart {
+        margin: auto;
+        max-width: 40px;
+      }
+    }
+    .score-label {
+      min-width: 100%;
+      border-radius: 0;
+      font-size: 20px;
     }
   }
 }
