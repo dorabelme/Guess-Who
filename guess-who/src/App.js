@@ -89,7 +89,17 @@ function App(props) {
       />
       <Route exact path="/register" component={Register} />
 
-      <Route path="/guesswho" component={ProtectedGuessWhoPage} />
+      <Route
+        path="/guesswho"
+        render={props => (
+          <ProtectedGuessWhoPage
+            {...props}
+            highScore={state.highScore}
+            setState={setState}
+            state={state}
+          />
+        )}
+      />
       <Route
         path="/questions"
         render={props => (

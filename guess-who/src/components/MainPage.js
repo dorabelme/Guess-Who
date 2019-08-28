@@ -34,7 +34,7 @@ const MainPage = props => {
             circular
           />
           <Card.Content>
-            <Card.Header>{props.username}</Card.Header>
+            <Card.Header>{props.state.username}</Card.Header>
           </Card.Content>
         </Card>
         <button type="submit" className="btn" onClick={handleSubmit}>

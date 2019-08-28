@@ -94,29 +94,16 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
         setAnswer(res.data.answer);
       })
       .catch(err => console.log(err.response));
-<<<<<<< HEAD
   };
-  // useEffect(() => {
-  //   getQuestions()
-  // }, [state]);
-
   useEffect(() => {
-    getHighScores();
-  }, [state]);
-
-  console.log(state.userId);
-=======
-  }
-  useEffect(() => {
-    getQuestions()
+    getQuestions();
   }, [state]);
 
   // useEffect(() => {
   //   getHighScores()
   // }, [state]);
 
-  console.log(state.userId)
->>>>>>> 41fc0cace205c9a7941ff31e06ad116812094214
+  console.log(state.userId);
 
   return (
     <Card className="question-list-card">
