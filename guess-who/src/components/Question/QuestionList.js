@@ -70,6 +70,7 @@ const QuestionList = () => {
         </Button.Group>
       </div>
       <div className="opponents">
+      <div className="opponents-div-1">
         <Label color="teal" image>
           <img src="./birdLogo.jpeg" />
           Name
@@ -80,6 +81,8 @@ const QuestionList = () => {
           Name
           <Label.Detail>Score</Label.Detail>
         </Label>
+        </div>
+          <div className="opponents-div-2">
         <Label color="teal" image>
           <img src="./birdLogo.jpeg" />
           Name
@@ -90,6 +93,7 @@ const QuestionList = () => {
           Name
           <Label.Detail>Score</Label.Detail>
         </Label>
+      </div>
       </div>
       <div className="question">
         <h2>Who's Tweet is it?</h2>
