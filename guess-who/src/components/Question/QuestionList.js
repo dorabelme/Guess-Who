@@ -48,7 +48,7 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
           setState({ ...state, highScore: highScore + 100, numberOfGuesses: state.numberOfGuesses + 1, lives: newLives });
           setHighlightCorrectAnswer(false);
         }
-      );         
+      );
     } else {
       const newLives = Math.max(state.lives - 1, 0);
       delay(
@@ -69,7 +69,7 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
       .then(res => {
         console.log(res);
       })
-      // .catch(err => console.log(err.response));
+    // .catch(err => console.log(err.response));
   }
 
   const getQuestions = () => {
@@ -87,10 +87,6 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
     getQuestions()
   }, [state]);
 
-  // useEffect(() => {
-  //   getHighScores()
-  // }, [state]);
-
   console.log(state.userId)
 
   return (
@@ -98,30 +94,30 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
     <Card className="question-list-card">
       <NavbarThree highScore={highScore} lives={state.lives} />
       <div className="opponents">
-      <div className="opponents-div-1">
-        <Label color="teal" image>
-          {/* <img src="./birdLogo.jpeg" /> */}
-          Name
+        <div className="opponents-div-1">
+          <Label color="teal" image>
+            {/* <img src="./birdLogo.jpeg" /> */}
+            Name
           <Label.Detail>Score</Label.Detail>
-        </Label>
-        <Label color="teal" image>
-          {/* <img src="./birdLogo.jpeg" /> */}
-          Name
+          </Label>
+          <Label color="teal" image>
+            {/* <img src="./birdLogo.jpeg" /> */}
+            Name
           <Label.Detail>Score</Label.Detail>
-        </Label>
+          </Label>
         </div>
-          <div className="opponents-div-2">
-        <Label color="teal" image>
-          {/* <img src="./birdLogo.jpeg" /> */}
-          Name
+        <div className="opponents-div-2">
+          <Label color="teal" image>
+            {/* <img src="./birdLogo.jpeg" /> */}
+            Name
           <Label.Detail>Score</Label.Detail>
-        </Label>
-        <Label color="teal" image>
-          {/* <img src="./birdLogo.jpeg" /> */}
-          Name
+          </Label>
+          <Label color="teal" image>
+            {/* <img src="./birdLogo.jpeg" /> */}
+            Name
           <Label.Detail>Score</Label.Detail>
-        </Label>
-      </div>
+          </Label>
+        </div>
       </div>
       <div className="question">
         <h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
@@ -146,11 +142,11 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
       </div>
       <Modal size={openState.size} open={openState.open} onClose={close}>
         <Modal.Header>Game Over</Modal.Header>
-         <Modal.Content>
+        <Modal.Content>
           <p>You ran out of lives...</p>
-        </Modal.Content> 
+        </Modal.Content>
         <Modal.Actions>
-         <Button onClick={reset}
+          <Button onClick={reset}
             positive
             icon='checkmark'
             labelPosition='right'
