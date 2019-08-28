@@ -4,11 +4,12 @@ import { Card, Button, Label, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 import QuestionCard from "./QuestionCard";
+import NavbarThree from "../Navbar/Navbar3";
 
 const QuestionList = ({ username, highScore, setState }) => {
   let [question, setQuestion] = useState("");
 
-  let [answer, setAnswer] = useState();
+  let [answer, setAnswer] = useState([]);
 
   let [candidates, setCandidates] = useState([]);
 
@@ -61,34 +62,61 @@ const QuestionList = ({ username, highScore, setState }) => {
 
   return (
     <Card className="question-list-card">
-      <div className="top-row">
-        <Button.Group attached="top">
-          <Button className="home-button">Home</Button>
+      {/* <div className="top-row">
+        <Button.Group attached='top'>
+          <Button href="/guesswho" className="home-button">Home</Button>
+          <Label className="score-label">
+            <Label.Detail className="score">Score: {highScore}</Label.Detail>
+          </Label>
           <Button className="hearts">
+            {//Set id of each heart to reference with life variable
+            }
             <Image src="./heart.png" className="heart" id="1"></Image>
             <Image src="./heart.png" className="heart" id="2"></Image>
             <Image src="./heart.png" className="heart" id="3"></Image>
           </Button>
         </Button.Group>
+      </div> */}
+      <NavbarThree highScore={highScore} />
+      <div className="opponents">
+        <Label color="teal" image>
+          <img src="./birdLogo.jpeg" />
+          Name
+          <Label.Detail>Score</Label.Detail>
+        </Label>
+        <Label color="teal" image>
+          <img src="./birdLogo.jpeg" />
+          Name
+          <Label.Detail>Score</Label.Detail>
+        </Label>
+        <Label color="teal" image>
+          <img src="./birdLogo.jpeg" />
+          Name
+          <Label.Detail>Score</Label.Detail>
+        </Label>
+        <Label color="teal" image>
+          <img src="./birdLogo.jpeg" />
+          Name
+          <Label.Detail>Score</Label.Detail>
+        </Label>
       </div>
-      <Label className="score-label">
-        Score:
-        <Label.Detail>{highScore}</Label.Detail>
-      </Label>
       <div className="question">
         <h2>Who's Tweet is it?</h2>
         <p>"{question}"</p>
       </div>
-      {candidates.map(candidate => (
-        <QuestionCard
-          key={candidate.id.id_str}
-          question={question}
-          imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
-          name={candidate.id.name}
-          handle={candidate.handle}
-          followers={candidate.id.followers_count}
-        />
-      ))}
+      <div className="candidate-card-div">
+        {candidates.map(candidate => (
+          //question cards are not yet clickable/do not have a link
+          <QuestionCard
+            key={candidate.id.id_str}
+            question={question}
+            imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
+            name={candidate.id.name}
+            handle={candidate.handle}
+            followers={candidate.id.followers_count}
+          />
+        ))}
+      </div>
     </Card>
   );
 };
