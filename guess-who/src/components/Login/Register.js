@@ -23,16 +23,6 @@ function Register({ touched, errors }) {
           <p>{touched.username && errors.username}</p>
         </div>
         <div className="form-box">
-          <label className="label">Email:</label>
-          <Field
-            className="input"
-            name="email"
-            type="email"
-            autoComplete="off"
-          />
-          <p>{touched.email && errors.email}</p>
-        </div>
-        <div className="form-box">
           <label className="label">Password:</label>
           <Field
             className="input"
@@ -62,7 +52,6 @@ export default withFormik({
     return {
       username: "",
       password: "",
-      email: ""
     };
   },
   validationSchema: Yup.object().shape({
@@ -70,7 +59,6 @@ export default withFormik({
     password: Yup.string()
       .min(6)
       .required("Password is required"),
-    email: Yup.string().required("Email is required")
   }),
   handleSubmit(values, formikBag) {
     const url = "https://lambda-guess-who.herokuapp.com/api/auth/register";
