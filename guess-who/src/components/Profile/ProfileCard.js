@@ -37,8 +37,8 @@ export default function ProfileCard({ username, highScore }) {
 
 	// };
 
-		highScore = highScore + 3;
-		const newScores = highScore * 10;
+		// highScore = highScore + 3;
+		// const newScores = highScore * 10;
 
 	// 	const yourAvatar = () => {
 	// 		axios()
