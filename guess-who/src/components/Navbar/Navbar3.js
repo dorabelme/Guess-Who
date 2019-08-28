@@ -10,7 +10,7 @@ function NavbarThree({ highScore, lives }) {
         <div className="navbarAll">
             <div className="leftNavbar">
                 <img src="./birdLogo.jpeg" alt="logo" />
-                <Link to="guesswho"><h1 href="/guesswho" className="home-button">Home</h1></Link>
+                <Link to="guesswho"><h1 className="home-button">Home</h1></Link>
             </div>
             <div>
                 <h1 className="score">Score: {highScore}</h1>
