@@ -1,5 +1,7 @@
 
-  
+ * {box-sizing:border-box}
+
+
 	.profile-card {
 	  display: flex;
 	  flex-direction:column;
@@ -13,10 +15,24 @@
 		width:100%;
 	  }
 	
-  
+  .userName {
+	  color: rgba(0,0,0,.7);
+	  text-shadow: 1px 1px black;
+  }
 	
-  
-	
-  
+  .container {
+	width: 100%; /* Full width */
+	background-color: #ddd; /* Grey background */
+  }
 
-}
+  .skills {
+	text-align: right; /* Right-align text */
+	padding-top: 10px; /* Add top padding */
+	padding-bottom: 10px; /* Add bottom padding */
+	color: white; /* White text color */
+  }
+  .scores {width: 30%; background-color: #4CAF50;} /* Green */
+
+  }
+
+

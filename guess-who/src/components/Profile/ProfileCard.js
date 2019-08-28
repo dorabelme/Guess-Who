@@ -7,7 +7,13 @@ import "./Profile.scss";
 
 //Dummy Data before state is able to be passed from login
 	const profile = {
-	avatar: "https://react.semantic-ui.com/images/avatar/large/elliot.jpg"
+	avatar: "https://react.semantic-ui.com/images/avatar/large/elliot.jpg",
+	header: "My Profile: ",
+	description:
+			'I want to tweet the very best. '
+	
+		
+	  
 // 	//name: "William",
 // 	// score: "35",
 // 	// settings: "Settings",
@@ -23,6 +29,11 @@ import "./Profile.scss";
 
 export default function ProfileCard({username, highScore}) {
 // const [avatar, getAvatar] = useState({})
+
+	highScore= highScore + 3;
+	const newScores = highScore * 10;
+
+	
 
 // 	const yourAvatar = () => {
 // 		axios()
@@ -57,10 +68,16 @@ return (
 		<Card>
 			<Image src={profile.avatar}/>
 			<Card.Content>
-				<Card.Header><h1>{username}</h1></Card.Header>
-				<h2>{highScore}</h2>
+				<Card.Header><h1 className="userName">{username}</h1></Card.Header>
+				<h2>{profile.header}</h2>
+		<div class="container">
+		<div className="skills scores">{newScores}</div>
+</div>
+
+				<h2>{newScores} Tweety Points!</h2>
 				{/*profile.settings*/}
-				<h1>Share to Twitter</h1>
+				<h3>{100 - newScores} points till the next level!</h3>
+				<h3>About me: {profile.description}</h3>
 			</Card.Content>
 		</Card>
 	</div>
