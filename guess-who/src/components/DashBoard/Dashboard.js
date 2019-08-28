@@ -1,11 +1,11 @@
 import React from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Card, Image, Label, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import "./mainpage.scss";
+import "./dashboard.scss";
 // import { UserContext } from "../contexts/UserContext";
-import NavbarMain from "./Navbar/Navbar2";
+import NavbarMain from "../Navbar/Navbar2";
 import FriendCard from "./FriendCard";
 
 let friendList = [
@@ -87,7 +87,7 @@ const MainPage = ({history, username}) => {
             imgSrc={player.imgSrc}
             highscore={getHighScores(player)}
           />
-        )}
+        ))}
       </div>
     </Card>
   );
