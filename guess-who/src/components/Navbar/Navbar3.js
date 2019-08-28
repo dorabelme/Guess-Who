@@ -13,7 +13,7 @@ function NavbarThree({ highScore }) {
                 <Link to="guesswho"><h1 href="/guesswho" className="home-button">Home</h1></Link>
             </div>
             <div>
-                <h1 lassName="score">Score: {highScore}</h1>
+                <h1 className="score">Score: {highScore}</h1>
             </div>
             <div className="rightNavbar">
                 <img src="./heart.png" className="heart" id="1"></img>

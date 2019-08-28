@@ -19,7 +19,7 @@ const QuestionCard = props => {
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
           <Card.Meta>@{props.handle}</Card.Meta>
-          <div className="followerCount">
+          <div className="follower-count">
             <Icon name="users" />
             Followers: {props.followers}
           </div>

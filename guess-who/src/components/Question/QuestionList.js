@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Card, Button, Label, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
+import "../../assets/animate.css";
 import QuestionCard from "./QuestionCard";
 import NavbarThree from "../Navbar/Navbar3";
 
@@ -105,7 +106,7 @@ const QuestionList = ({ username, highScore, setState }) => {
       </div>
       </div>
       <div className="question">
-        <h2>Who's Tweet is it?</h2>
+        <h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
         <p>"{question}"</p>
       </div>
       <div className="candidate-card-div">
