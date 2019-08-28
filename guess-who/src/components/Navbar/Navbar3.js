@@ -13,7 +13,7 @@ function NavbarThree({ highScore, lives }) {
                 <Link to="guesswho"><h1 className="home-button">Home</h1></Link>
             </div>
             <div>
-                <h1 className="score">Score: {highScore}</h1>
+                {/* <h1 className="score">Score: {highScore}</h1> */}
             </div>
             <div className="rightNavbar">
                 {Array.from(Array(lives).keys()).map(i => i + 1).map(id => <img key={id} src="./heart.png" className="heart" id={id}></img>)}

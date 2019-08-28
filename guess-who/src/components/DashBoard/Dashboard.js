@@ -35,7 +35,7 @@ let friendList = [
   }
 ];
 
-const MainPage = props => {
+const MainPage = ({history, username}) => {
 
   const getHighScores = (user) => {
     axiosWithAuth()
@@ -53,7 +53,7 @@ const MainPage = props => {
       .then(res => {
         console.log("on submit:", res);
         // localStorage.setItem("token", res.data.payload);
-        props.history.push("/questions");
+        history.push("/questions");
       })
       .catch(e => {
         console.log(e.response);
@@ -61,12 +61,12 @@ const MainPage = props => {
   };
   return (
     <Card className="dashboard-card">
-      <NavbarMain />
+      <NavbarMain username={username} />
       <div className="upperNav">
         <Link to="/profile">
           <div className="profile-pin">
             <Card.Content>
-              <Card.Header>Username</Card.Header>
+              <Card.Header>{username}</Card.Header>
             </Card.Content>
             <Image
               src="https://react.semantic-ui.com/images/avatar/large/elliot.jpg"
@@ -87,7 +87,7 @@ const MainPage = props => {
             imgSrc={player.imgSrc}
             highscore={getHighScores(player)}
           />
-        ))}
+        )}
       </div>
     </Card>
   );

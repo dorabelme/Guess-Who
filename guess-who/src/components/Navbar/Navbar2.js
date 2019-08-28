@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import "./navbar.scss";
 import "./navbarTwo.scss";
-import { Accordion, Icon, Image, Checkbox, Modal } from 'semantic-ui-react';
+import { Accordion, Icon} from 'semantic-ui-react';
 
 
-function NavbarMain() {
+function NavbarMain({username}) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const [openModal, setOpen] = useState(false)
@@ -38,9 +38,8 @@ function NavbarMain() {
                             <Icon name='angle down' size="big" />
                         </Accordion.Title>
                         <Accordion.Content active={openModal} className="profileCard">
-                            <div>player@gmail.com</div>
+                            <div>{username}</div>
                             <Link to="/profile"><div className="editProfileBtn" onClick={show}>Profile</div></Link>
-                            <Link to="/settings"><div className="editProfileBtn">Settings</div></Link>
                             <Link onClick={signOut}>Sign Out</Link>
                         </Accordion.Content>
                     </div>

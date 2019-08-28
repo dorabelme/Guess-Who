@@ -12,11 +12,22 @@
     width  : 90%;
   }
 
+  .ui.red.label {
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+  }
+
   .opponents-div-1 {
     display  : flex;
-    flex-wrap: wrap;
+    flex-wrap: row;
+    justify-content: center;
+    align-items: center;
     margin   : 5% auto;
-    width    : 40%;
+    width    : 50%;
   }
 
   .opponents-div-2 {
@@ -27,14 +38,18 @@
   }
 
   .opponents-div-1 .label {
-    margin   : 5%;
-    left     : 10%;
+    // margin   : 5%;
+    // left     : 10%;
     transform: scale(1.4);
   }
 
   .opponents-div-2 .label {
     margin   : 5%;
     transform: scale(1.4);
+  }
+
+  .ui.image.label .detail {
+    margin: 0;
   }
 
   .correctAnswer {
@@ -122,7 +137,12 @@
 
 .ui.active.modal {
   display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 27rem;
+  height: 14rem;
 
   >.header:not(.ui) {
     font-size: 2rem;

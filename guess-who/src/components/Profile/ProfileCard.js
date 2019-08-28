@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+<<<<<<< HEAD
 import NavbarMain from "../Navbar/Navbar2";
 import "../Navbar/navbarTwo.scss";
 import "./Profile.scss";
+=======
+import "./profile.scss";
+
+>>>>>>> 62b6f9ca3a85d96c67cb63dc988b70df608cce79
 //Dummy Data before state is able to be passed from login
 const profile = {
 	avatar: "https://react.semantic-ui.com/images/avatar/large/elliot.jpg",
@@ -17,6 +20,7 @@ const profile = {
 	//     // settings: "Settings",
 	//     share: "Share Icon to Twitter"
 }
+<<<<<<< HEAD
 export default function ProfileCard({ username, highScore }) {
 	// const [avatar, getAvatar] = useState({})
 	highScore = highScore + 3;
@@ -81,3 +85,39 @@ export default function ProfileCard({ username, highScore }) {
 		</>
 	);
 }
+=======
+
+
+function ProfileCard({ username, highScore }) {
+		// const [avatar, getAvatar] = useState({})
+
+		highScore = highScore + 3;
+		const newScores = highScore * 10;
+
+		return (
+			<>
+				<div className="profile-card">
+					<Card>
+						<Image src={profile.avatar} />
+						<Card.Content>
+							<Card.Header><h1 className="userName">{username}</h1></Card.Header>
+							<h2>{profile.header}</h2>
+							<div class="container">
+								<div className="skills scores">{newScores}</div>
+							</div>
+
+							<h2>{newScores} Tweety Points!</h2>
+							{/*profile.settings*/}
+							<h3>{100 - newScores} points till the next level!</h3>
+							<h3>About me: {profile.description}</h3>
+						</Card.Content>
+					</Card>
+				</div>
+			</>
+
+
+		);
+	}
+
+export default ProfileCard;
+>>>>>>> 62b6f9ca3a85d96c67cb63dc988b70df608cce79

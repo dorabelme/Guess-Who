@@ -8,22 +8,19 @@ import "../../assets/animate.css";
 import QuestionCard from "./QuestionCard";
 import NavbarThree from "../Navbar/Navbar3";
 
-const QuestionList = ({ history, username, highScore, setState, state }) => {
+const QuestionList = ({ username, highScore, setState, state }) => {
   const [openState, setOpenState] = useState({ open: false })
+  const [personalScore, setPersonalScore] = useState()
+  
+  let [question, setQuestion] = useState("");
+  let [answer, setAnswer] = useState([]);
+  let [candidates, setCandidates] = useState([]);
+  let [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
+  let [selectedCandidate, setSelectedCandidate] = useState("");
+
 
   const show = (size) => () => setOpenState({ size, open: true })
   const close = () => setOpenState({ open: false })
-
-  let [question, setQuestion] = useState("");
-
-  let [answer, setAnswer] = useState([]);
-
-  let [candidates, setCandidates] = useState([]);
-
-  let [imgUrl, setImgUrl] = useState("");
-
-  let [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
-  let [selectedCandidate, setSelectedCandidate] = useState("");
 
   function delay(f) {
     setTimeout(f, 2000);
@@ -39,13 +36,11 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
   function selectCandidate(event, id) {
     setHighlightCorrectAnswer(true);
     setSelectedCandidate(id);
-
     if (id === answer.id_str) {
       const newLives = Math.min(state.lives + 1, 3);
-
       delay(
         () => {
-          setState({ ...state, highScore: highScore + 100, numberOfGuesses: state.numberOfGuesses + 1, lives: newLives });
+          setState({ ...state, highScore: highScore + 1, numberOfGuesses: state.numberOfGuesses + 1, lives: newLives });
           setHighlightCorrectAnswer(false);
         }
       );
@@ -56,6 +51,10 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
           setState({ ...state, numberOfGuesses: state.numberOfGuesses + 1, lives: newLives });
           setHighlightCorrectAnswer(false);
           if (state.lives == 1) {
+            if (highScore >= personalScore) {
+              putHighScores(highScore)
+            }
+            getHighScores()
             show('mini')()
           }
         }
@@ -67,9 +66,20 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
     axiosWithAuth()
       .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`)
       .then(res => {
+        setPersonalScore(res.data)
+      })
+      .catch(err => console.log(err.response));
+  }
+
+
+  const putHighScores = (highScore) => {
+    const json = { 'highscore' : highScore}
+    axiosWithAuth()
+      .put(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`, json)
+      .then(res => {
         console.log(res);
       })
-    // .catch(err => console.log(err.response));
+    .catch(err => console.log(err.response));
   }
 
   const getQuestions = () => {
@@ -87,37 +97,43 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
     getQuestions()
   }, [state]);
 
+
   console.log(state.userId)
 
   return (
 
     <Card className="question-list-card">
       <NavbarThree highScore={highScore} lives={state.lives} />
-      <div className="opponents">
+      <Label color="red" image>
+
+        {/* <img src="./birdLogo.jpeg" /> */}
+        Score:
+          <Label.Detail>{highScore}</Label.Detail>
+      </Label>
+      <div className="opponents">       
         <div className="opponents-div-1">
           <Label color="teal" image>
-            {/* <img src="./birdLogo.jpeg" /> */}
-            Name
+          {/* <img src="./birdLogo.jpeg" /> */}
+          {username}
+          <Label.Detail>Personal Highest Score: {personalScore}</Label.Detail>
+        </Label>
+        {/* <Label color="teal" image>
+          Name
           <Label.Detail>Score</Label.Detail>
-          </Label>
-          <Label color="teal" image>
-            {/* <img src="./birdLogo.jpeg" /> */}
-            Name
-          <Label.Detail>Score</Label.Detail>
-          </Label>
+        </Label> */}
         </div>
-        <div className="opponents-div-2">
-          <Label color="teal" image>
-            {/* <img src="./birdLogo.jpeg" /> */}
-            Name
-          <Label.Detail>Score</Label.Detail>
-          </Label>
-          <Label color="teal" image>
-            {/* <img src="./birdLogo.jpeg" /> */}
-            Name
-          <Label.Detail>Score</Label.Detail>
-          </Label>
-        </div>
+          {/* <div className="opponents-div-2"> */}
+        {/* <Label color="teal" image> */}
+          {/* <img src="./birdLogo.jpeg" /> */}
+          {/* Name */}
+          {/* <Label.Detail>Score</Label.Detail> */}
+        {/* </Label> */}
+        {/* <Label color="teal" image> */}
+          {/* <img src="./birdLogo.jpeg" />  */}
+          {/* Name */}
+          {/* <Label.Detail>Score</Label.Detail> */}
+        {/* </Label> */}
+      {/* </div>  */}
       </div>
       <div className="question">
         <h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
@@ -125,7 +141,6 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
       </div>
       <div className="candidate-card-div">
         {candidates.map(candidate => (
-          //question cards are not yet clickable/do not have a link
           <QuestionCard answer={answer}
             selectCandidate={selectCandidate}
             id={candidate.id.id_str}
