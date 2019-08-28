@@ -30,6 +30,7 @@ const initialState = {
   tweet: "",
   tweeters: [],
   isLoading: false,
+  hearts: 3,
   error: "",
   highScore: 0
 };
@@ -61,9 +62,12 @@ function App(props) {
         localStorage.setItem("token", res.data.token);
         console.log("username", JSON.parse(res.config.data).username);
         let usernameData = JSON.parse(res.config.data).username;
-        setState({ ...initialState, username: usernameData });
         let tokenData = parseJwt(res.data.token);
-        setState({ ...initialState, userId: tokenData.user.id });
+        setState({
+          ...initialState,
+          username: usernameData,
+          userId: tokenData.user.id
+        });
         console.log(tokenData.user.id);
         props.history.push("/guesswho");
       })
@@ -72,8 +76,8 @@ function App(props) {
       });
   };
 
-  console.log("the set data", state);
-  // console.log(tokenData);
+  console.log("the set data", state.username);
+  console.log("this is the state", state);
 
   return (
     <div className="App">
@@ -88,7 +92,11 @@ function App(props) {
       <Route
         path="/questions"
         render={props => (
-          <ProtectedQuestionList {...props} highScore={state.highScore} />
+          <ProtectedQuestionList
+            {...props}
+            highScore={state.highScore}
+            onClick={props.onClick}
+          />
         )}
       />
       <Route
@@ -97,8 +105,7 @@ function App(props) {
           <ProtectedProfileCard
             {...props}
             username={state.username}
-            highscore={state.highScore}
-            setState={setState}
+            highScore={state.highScore}
           />
         )}
       />

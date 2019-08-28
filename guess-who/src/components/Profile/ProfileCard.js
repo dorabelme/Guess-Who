@@ -13,7 +13,7 @@ const profile = {
 	share: "Share Icon to Twitter"
 }
 
-function ProfileCard() {
+function ProfileCard({username, highScore}) {
 
 
 
@@ -56,8 +56,8 @@ function ProfileCard() {
 
 				/>
 				<Card.Content>
-					<Card.Header>{profile.name}</Card.Header>
-					<h2>{profile.score}</h2>
+					<Card.Header>{username}</Card.Header>
+					<h2>{highScore}</h2>
 					{profile.settings}
 					<h1>Share to Twitter</h1>
 				</Card.Content>
