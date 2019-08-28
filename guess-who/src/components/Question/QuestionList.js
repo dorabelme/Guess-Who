@@ -117,23 +117,7 @@ const QuestionList = ({ username, highScore, setState, state }) => {
           {username}
           <Label.Detail>Personal Highest Score: {personalScore}</Label.Detail>
         </Label>
-        {/* <Label color="teal" image>
-          Name
-          <Label.Detail>Score</Label.Detail>
-        </Label> */}
         </div>
-          {/* <div className="opponents-div-2"> */}
-        {/* <Label color="teal" image> */}
-          {/* <img src="./birdLogo.jpeg" /> */}
-          {/* Name */}
-          {/* <Label.Detail>Score</Label.Detail> */}
-        {/* </Label> */}
-        {/* <Label color="teal" image> */}
-          {/* <img src="./birdLogo.jpeg" />  */}
-          {/* Name */}
-          {/* <Label.Detail>Score</Label.Detail> */}
-        {/* </Label> */}
-      {/* </div>  */}
       </div>
       <div className="question">
         <h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
