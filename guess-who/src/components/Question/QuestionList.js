@@ -97,6 +97,9 @@ const QuestionList = ({ username, highScore, setState, state }) => {
     getQuestions()
   }, [state]);
 
+  // useEffect(() => {
+  //   getHighScores()
+  // }, [state]);
 
   console.log(state.userId)
 
@@ -104,7 +107,7 @@ const QuestionList = ({ username, highScore, setState, state }) => {
 
     <Card className="question-list-card">
       <NavbarThree highScore={highScore} lives={state.lives} />
-      <Label color="red" image>
+      <Label color="yellow" image>
 
         {/* <img src="./birdLogo.jpeg" /> */}
         Score:

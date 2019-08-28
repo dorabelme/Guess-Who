@@ -12,13 +12,15 @@
     width  : 90%;
   }
 
-  .ui.red.label {
+  .ui.yellow.label {
     height: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     font-size: 1.4rem;
+    margin: 0;
+    border-radius: 0;
   }
 
   .opponents-div-1 {
@@ -38,14 +40,8 @@
   }
 
   .opponents-div-1 .label {
-    // margin   : 5%;
-    // left     : 10%;
     transform: scale(1.4);
-  }
-
-  .opponents-div-2 .label {
-    margin   : 5%;
-    transform: scale(1.4);
+    border-radius: 0;
   }
 
   .ui.image.label .detail {
@@ -65,10 +61,10 @@
     width         : 90%;
     min-height    : 200px;
     background    : white;
-    border-radius : 10px;
     padding       : 2%;
     padding-bottom: 5%;
     font-size     : 16px;
+    border-radius: 5px;
   }
 
   .candidate-card-div {
@@ -84,6 +80,7 @@
       width         : 80%;
       height        : 100px;
       margin        : 5% auto 5% auto !important;
+      border-radius: 0;
 
       .card-imgs {
         width : 100px;

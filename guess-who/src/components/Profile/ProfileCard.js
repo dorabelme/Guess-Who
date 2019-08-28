@@ -10,7 +10,7 @@ import NavbarFour from "../Navbar/Navbar4";
 //Dummy Data before state is able to be passed from login
 const profile = {
 	avatar: "https://react.semantic-ui.com/images/avatar/large/elliot.jpg",
-	header: "My Profile: ",
+    header: "My Profile: ",
 	description:
 		'I want to tweet the very best. '
 
@@ -82,7 +82,6 @@ export default function ProfileCard({ username, highScore }) {
 						<Card.Header><h1 className="userName">{username}</h1></Card.Header>
 						<h2>{profile.header}</h2>
 						<div class="container">
-
 							<div className="skills scores" /></div>
 						<h2>{newScores} Tweety Points!</h2>
 						{/*profile.settings*/}
@@ -92,7 +91,5 @@ export default function ProfileCard({ username, highScore }) {
 				</Card>
 			</div>
 		</>
-
-
 	);
 }
