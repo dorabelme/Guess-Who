@@ -63,6 +63,15 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
     }
   }
 
+  const getHighScores = () => {
+    axiosWithAuth()
+      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`)
+      .then(res => {
+        console.log(res);
+      })
+      // .catch(err => console.log(err.response));
+  }
+
   const getQuestions = () => {
     axiosWithAuth()
       .get("https://lambda-guess-who.herokuapp.com/api/question")
@@ -74,11 +83,15 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
       })
       .catch(err => console.log(err.response));
   }
+  // useEffect(() => {
+  //   getQuestions()
+  // }, [state]);
+
   useEffect(() => {
-    getQuestions()
+    getHighScores()
   }, [state]);
 
-  console.log(state.lives)
+  console.log(state.userId)
 
   return (
 
@@ -87,24 +100,24 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
       <div className="opponents">
       <div className="opponents-div-1">
         <Label color="teal" image>
-          <img src="./birdLogo.jpeg" />
+          {/* <img src="./birdLogo.jpeg" /> */}
           Name
           <Label.Detail>Score</Label.Detail>
         </Label>
         <Label color="teal" image>
-          <img src="./birdLogo.jpeg" />
+          {/* <img src="./birdLogo.jpeg" /> */}
           Name
           <Label.Detail>Score</Label.Detail>
         </Label>
         </div>
           <div className="opponents-div-2">
         <Label color="teal" image>
-          <img src="./birdLogo.jpeg" />
+          {/* <img src="./birdLogo.jpeg" /> */}
           Name
           <Label.Detail>Score</Label.Detail>
         </Label>
         <Label color="teal" image>
-          <img src="./birdLogo.jpeg" />
+          {/* <img src="./birdLogo.jpeg" /> */}
           Name
           <Label.Detail>Score</Label.Detail>
         </Label>
