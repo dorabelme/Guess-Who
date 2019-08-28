@@ -12,12 +12,19 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    width: 30%;
   }
 
   .rightNavbar {
       display: flex;
       flex-direction: row;
+<<<<<<< HEAD
       margin-top: 3.5%;
+=======
+      justify-content: flex-end;
+      margin-top: 3.5%;
+      min-width: 10rem;
+>>>>>>> 0ef54adfbfb90936491bfac31f81b145fb68c96f
   }
 
   img {
