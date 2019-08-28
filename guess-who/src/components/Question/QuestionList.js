@@ -83,13 +83,13 @@ const QuestionList = ({ history, username, highScore, setState, state }) => {
       })
       .catch(err => console.log(err.response));
   }
-  // useEffect(() => {
-  //   getQuestions()
-  // }, [state]);
-
   useEffect(() => {
-    getHighScores()
+    getQuestions()
   }, [state]);
+
+  // useEffect(() => {
+  //   getHighScores()
+  // }, [state]);
 
   console.log(state.userId)
 
