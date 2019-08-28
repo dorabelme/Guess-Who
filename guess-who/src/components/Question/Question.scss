@@ -39,6 +39,14 @@
     transform: scale(1.4);
   }
 
+  .correctAnswer {
+    border: 5px solid #1ABC9C !important;
+  }
+
+  .wrongAnswer {
+     border: 5px solid #E74C3C !important;
+  }
+
   .question {
     margin: auto;
     width: 90%;
@@ -75,6 +83,10 @@
         .correct {
           background-color: green;
         }
+      }
+      
+      .follower-count {
+        margin:10%;
       }
     }
   }

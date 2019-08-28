@@ -3,10 +3,11 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Card, Button, Label, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
+import "../../assets/animate.css";
 import QuestionCard from "./QuestionCard";
 import NavbarThree from "../Navbar/Navbar3";
 
-const QuestionList = ({ username, highScore, setState }) => {
+const QuestionList = ({ username, highScore, setState, state }) => {
   let [question, setQuestion] = useState("");
 
   let [answer, setAnswer] = useState([]);
@@ -16,6 +17,9 @@ const QuestionList = ({ username, highScore, setState }) => {
   let [candidates, setCandidates] = useState([]);
 
   let [imgUrl, setImgUrl] = useState("");
+
+  let [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
+  let [selectedCandidate, setSelectedCandidate] = useState("");
 
   // let [guess, setGuess] = useState("");
 
@@ -42,12 +46,38 @@ const QuestionList = ({ username, highScore, setState }) => {
   //   }
   // }, [guess]);
 
-  // const handleSubmit = () => {
-  //   setAnswer();
-  //   if (answer === answer) {
-  //     setState({ ...state, highScore: highScore + 100 });
-  //   }
-  // };
+  function delay(f) {
+    setTimeout(f, 1000);
+  }
+
+  function selectCandidate(event, id) {
+    setHighlightCorrectAnswer(true);
+    setSelectedCandidate(id);
+
+    if (id === answer.id_str) {
+      const newLives = Math.min(state.lives + 1, 3);
+
+      delay(() => {
+        setState({
+          ...state,
+          highScore: highScore + 100,
+          numberOfGuesses: state.numberOfGuesses + 1,
+          lives: newLives
+        });
+        setHighlightCorrectAnswer(false);
+      });
+    } else {
+      const newLives = Math.max(state.lives - 1, 0);
+      delay(() => {
+        setState({
+          ...state,
+          numberOfGuesses: state.numberOfGuesses + 1,
+          lives: newLives
+        });
+        setHighlightCorrectAnswer(false);
+      });
+    }
+  }
 
   useEffect(() => {
     axiosWithAuth()
@@ -55,31 +85,15 @@ const QuestionList = ({ username, highScore, setState }) => {
       .then(res => {
         console.log("question and answer:", res);
         setQuestion(res.data.question);
-        // setAnswer(res.data.answer);
         setCandidates(res.data.candidates);
         setAnswer(res.data.answer);
       })
       .catch(err => console.log(err.response));
-  }, []);
+  }, [state]);
 
   return (
     <Card className="question-list-card">
-      {/* <div className="top-row">
-        <Button.Group attached='top'>
-          <Button href="/guesswho" className="home-button">Home</Button>
-          <Label className="score-label">
-            <Label.Detail className="score">Score: {highScore}</Label.Detail>
-          </Label>
-          <Button className="hearts">
-            {//Set id of each heart to reference with life variable
-            }
-            <Image src="./heart.png" className="heart" id="1"></Image>
-            <Image src="./heart.png" className="heart" id="2"></Image>
-            <Image src="./heart.png" className="heart" id="3"></Image>
-          </Button>
-        </Button.Group>
-      </div> */}
-      <NavbarThree highScore={highScore} />
+      <NavbarThree highScore={highScore} lives={state.lives} />
       <div className="opponents">
         <div className="opponents-div-1">
           {/* I think we will have to ditch the multiplayer idea as the back end isnt set up for it */}
@@ -108,22 +122,26 @@ const QuestionList = ({ username, highScore, setState }) => {
         </div>
       </div>
       <div className="question">
-        <h2>Who's Tweet is it?</h2>
+        <h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
         <p>"{question}"</p>
       </div>
       <div className="candidate-card-div">
         {candidates.map(candidate => (
           //question cards are not yet clickable/do not have a link
           <QuestionCard
-            key={candidate.id.id_str}
-            className={candidate.id.id_str}
+            answer={answer}
+            selectCandidate={selectCandidate}
+            id={candidate.id.id_str}
+            key={Math.random()
+              .toString(36)
+              .substring(7)}
             question={question}
             imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
             name={candidate.id.name}
             handle={candidate.handle}
             followers={candidate.id.followers_count}
-            answer={answer}
-            hearts={hearts}
+            highlightCorrectAnswer={highlightCorrectAnswer}
+            selectedCandidate={selectedCandidate}
           />
         ))}
       </div>

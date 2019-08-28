@@ -8,6 +8,7 @@ import Navbar from "./Navbar/Navbar";
 import NavbarMain from "./Navbar/Navbar2";
 
 const MainPage = props => {
+  console.log("here are sdome props deejay", props);
   const handleSubmit = () => {
     const url = "https://lambda-guess-who.herokuapp.com/amIAuthed";
     axiosWithAuth()
@@ -21,6 +22,7 @@ const MainPage = props => {
         console.log(e.response);
       });
   };
+
   return (
     <>
       <NavbarMain />
@@ -32,13 +34,14 @@ const MainPage = props => {
             circular
           />
           <Card.Content>
-            <Card.Header>Player</Card.Header>
+            <Card.Header>{props.username}</Card.Header>
           </Card.Content>
         </Card>
         <button type="submit" className="btn" onClick={handleSubmit}>
           Play
         </button>
       </div>
+      <h4>highscore: {props.highScore}</h4>
     </>
   );
 };

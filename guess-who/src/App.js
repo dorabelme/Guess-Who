@@ -30,9 +30,10 @@ const initialState = {
   tweet: "",
   tweeters: [],
   isLoading: false,
-  hearts: 3,
   error: "",
-  highScore: 0
+  highScore: 0,
+  numberOfGuesses: 0,
+  lives: 3
 };
 
 function parseJwt(token) {
@@ -52,6 +53,9 @@ function parseJwt(token) {
 
 function App(props) {
   const [state, setState] = useState(initialState);
+  const [highScore, setHighScore] = useState(initialState);
+
+  const getHighScore = values => {};
 
   const getLogin = values => {
     const url = "https://lambda-guess-who.herokuapp.com/api/auth/login";
@@ -63,10 +67,12 @@ function App(props) {
         console.log("username", JSON.parse(res.config.data).username);
         let usernameData = JSON.parse(res.config.data).username;
         let tokenData = parseJwt(res.data.token);
+        let highScoreData = JSON.parse(res.config.data).highScore;
         setState({
           ...initialState,
           username: usernameData,
-          userId: tokenData.user.id
+          userId: tokenData.user.id,
+          highScore: highScoreData
         });
         console.log(tokenData.user.id);
         props.history.push("/guesswho");
@@ -76,8 +82,8 @@ function App(props) {
       });
   };
 
-  console.log("the set data", state.username);
-  console.log("this is the state", state);
+  // console.log("the set data", state.username);
+  // console.log("this is the state", state);
 
   return (
     <div className="App">
@@ -88,14 +94,26 @@ function App(props) {
       />
       <Route exact path="/register" component={Register} />
 
-      <Route path="/guesswho" component={ProtectedGuessWhoPage} />
+      <Route
+        path="/guesswho"
+        render={props => (
+          <ProtectedGuessWhoPage
+            {...props}
+            highScore={state.highScore}
+            username={state.username}
+            setState={setState}
+            state={state}
+          />
+        )}
+      />
       <Route
         path="/questions"
         render={props => (
           <ProtectedQuestionList
             {...props}
             highScore={state.highScore}
-            onClick={props.onClick}
+            setState={setState}
+            state={state}
           />
         )}
       />

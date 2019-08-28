@@ -4,25 +4,35 @@ import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 
 const QuestionCard = props => {
-  console.log("question card props:", props);
+  const defaultClass = "candidate-card";
+  const correctAnswer = "candidate-card correctAnswer";
+  const incorrectAnswer = "candidate-card wrongAnswer";
+
   const addDefaultSrc = ev => {
     ev.target.src = "./birdLogo.jpeg";
   };
-  let [hearts, setHearts] = useState(props.hearts);
-  return (
-    <div>
-      <Card
-        className="candidate-card"
-        onClick={() => {
-          props.handle === props.answer.screen_name
-            ? //toggle correct style and push to next question after 1 second
 
-              console.log("yep")
-            : // toggle incorrect style, toggle hideHeart style, push to next question or game over
-              setHearts(hearts - 1);
-          console.log("nope");
-        }}
-      >
+  function click(event) {
+    props.selectCandidate(event, props.id);
+  }
+
+  function setClass() {
+    if (props.highlightCorrectAnswer && props.id === props.answer.id_str) {
+      return correctAnswer;
+    } else if (
+      props.highlightCorrectAnswer &&
+      props.id !== props.answer.id_str &&
+      props.selectedCandidate === props.id
+    ) {
+      return incorrectAnswer;
+    } else {
+      return defaultClass;
+    }
+  }
+
+  return (
+    <div onClick={click}>
+      <Card className={setClass()}>
         <Image
           className="card-imgs"
           src={props.imgUrl}
@@ -31,7 +41,7 @@ const QuestionCard = props => {
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
           <Card.Meta>@{props.handle}</Card.Meta>
-          <div className="followerCount">
+          <div className="follower-count">
             <Icon name="users" />
             Followers: {props.followers}
           </div>
@@ -40,4 +50,5 @@ const QuestionCard = props => {
     </div>
   );
 };
+
 export default QuestionCard;
