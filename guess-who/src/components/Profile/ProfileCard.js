@@ -20,6 +20,10 @@ import "./Profile.scss";
 // 	share: "Share Icon to Twitter"
  }
 
+<<<<<<< HEAD
+=======
+function ProfileCard({username, highScore}) {
+>>>>>>> b4894892a5e91dca38a0c0d950083ca8e4bd5d06
 
 
 

@@ -3,22 +3,33 @@ import { Card, Image, Icon } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 
-
-
-
 const QuestionCard = props => {
+
+  const defaultClass = "candidate-card";
+  const correctAnswer = "candidate-card correctAnswer";
+  const incorrectAnswer = "candidate-card wrongAnswer";
 
   const addDefaultSrc =(ev) => {
     ev.target.src = "./birdLogo.jpeg";
   }
 
+  function click(event) {
+    props.selectCandidate(event, props.id);
+  }
+
+  function setClass() {
+    if (props.highlightCorrectAnswer && props.id === props.answer.id_str) {
+      return correctAnswer;
+    } else if (props.highlightCorrectAnswer && props.id !== props.answer.id_str && props.selectedCandidate === props.id) {
+      return incorrectAnswer;
+    } else {
+      return defaultClass;
+    }
+  }
+
   return (
-    <div>
-      <div className="top-row">
-        <button></button>
-        <img></img>
-      </div>
-      <Card className="question-card">
+    <div onClick={click}>
+      <Card className={setClass()}>
         <Image className="card-imgs" src={props.imgUrl} onError={addDefaultSrc}></Image>
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
@@ -32,4 +43,5 @@ const QuestionCard = props => {
     </div>
   );
 };
+
 export default QuestionCard;

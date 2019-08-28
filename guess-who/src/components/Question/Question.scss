@@ -6,29 +6,87 @@
       rgba(31, 4, 184, 0.8) 0%,
       rgba(14, 171, 199, 0.8) 100%) !important;
 
-  .question {
-    margin: 5% auto 5% auto;
-    width: 90%;
-    min-height: 200px;
-    background: white;
-    border-radius: 10px;
-    padding: 2%;
-    padding-bottom: 5%;
-    font-size: 16px;
+  .opponents {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5% auto;
+    width: 80%;
   }
 
-  .question-card {
-    display       : flex;
-    flex-direction: row;
-    width     : 90%;
-    margin        : 5% auto 5% auto !important;
+  .opponents .label {
+    margin: 5%;
+    left: 5%;
+    right: 5%;
+    transform: scale(1.4);
+  }
 
-    .card-imgs {
-      width: 30%;
+  .correctAnswer {
+    border: 5px solid #1ABC9C !important;
+  }
+
+  .wrongAnswer {
+     border: 5px solid #E74C3C !important;
+  }
+
+  .question {
+    margin        : auto;
+    width         : 90%;
+    min-height    : 200px;
+    background    : white;
+    border-radius : 10px;
+    padding       : 2%;
+    padding-bottom: 5%;
+    font-size     : 16px;
+  }
+
+  .candidate-card-div {
+    margin-bottom: 0px;
+
+    .candidate-card {
+      display       : flex;
+      flex-direction: row;
+      width         : 80%;
+      height        : 80px;
+      margin        : 5% auto 5% auto !important;
+
+      .card-imgs {
+        width : 80px;
+        height: 80px;
+      }
+
+      .card-content {
+        width: 50%;
+      }
+    }
+  }
+
+  .top-row {
+    min-width : 100%;
+    max-height: 40px;
+
+    .home-button {
+      width     : 25%;
+      max-height: 50px;
     }
 
-    .card-content {
-      width: 50%;
+    .hearts {
+      display   : flex;
+      width     : 25%;
+      max-height: 40px;
+
+      .heart {
+        margin   : auto;
+        max-width: 30px;
+      }
+    }
+
+    .score-label {
+      max-height: 40px;
+      font-size : 20px;
+
+      .score {
+        margin: 4% auto;
+      }
     }
   }
 }

@@ -31,7 +31,9 @@ const initialState = {
 	tweeters: [],
 	isLoading: false,
 	error: "",
-	highScore: 0
+	highScore: 0,
+	numberOfGuesses: 0,
+	lives: 3
 };
 
 function parseJwt(token) {
@@ -61,12 +63,9 @@ function App(props) {
 				localStorage.setItem("token", res.data.token);
 				console.log("username", JSON.parse(res.config.data).username);
 				let usernameData = JSON.parse(res.config.data).username;
-
 				let tokenData = parseJwt(res.data.token);
-
 				setState({ ...initialState, username: usernameData, userId: tokenData.user.id });
 				console.log(tokenData.user.id);
-
 				props.history.push("/guesswho");
 			})
 			.catch(e => {
@@ -87,7 +86,12 @@ function App(props) {
 			<Route exact path="/register" component={Register} />
 
 			<Route path="/guesswho" component={ProtectedGuessWhoPage} />
-			<Route path="/questions" component={ProtectedQuestionList} />
+			<Route
+				path="/questions"
+				render={props => (
+					<ProtectedQuestionList {...props} highScore={state.highScore} setState={setState} state={state} />
+				)}
+			/>
 			<Route
 				path="/profile"
 				render={props => (
