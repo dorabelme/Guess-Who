@@ -27,7 +27,15 @@ export default function ProfileCard({ username, highScore }) {
 
 	highScore = highScore + 3;
 	const newScores = highScore * 10;
+	const divStyle = {
+		width: `${newScores}`,
+		backgroundColor: '#4CAF50 !important',
+		textAlign: 'right',
+		paddingTop: '10px',
+		paddingBottom: '10px',
+		color: 'white'
 
+	};
 
 
 	// 	const yourAvatar = () => {
@@ -61,6 +69,10 @@ export default function ProfileCard({ username, highScore }) {
 	  */}
 
 			<NavbarMain />
+			<button class="ui left labeled icon button">
+				<i class="left arrow icon"></i>
+				Go Back
+			</button>
 			<div className="profile-card">
 				<Card>
 					<Image src={profile.avatar} />
@@ -68,9 +80,8 @@ export default function ProfileCard({ username, highScore }) {
 						<Card.Header><h1 className="userName">{username}</h1></Card.Header>
 						<h2>{profile.header}</h2>
 						<div class="container">
-							<div className="skills scores">{newScores}</div>
-						</div>
 
+							<div styles={divStyle} /></div>
 						<h2>{newScores} Tweety Points!</h2>
 						{/*profile.settings*/}
 						<h3>{100 - newScores} points till the next level!</h3>
