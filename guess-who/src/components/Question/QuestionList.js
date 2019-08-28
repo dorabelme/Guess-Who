@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Card, Button, Label, Image } from "semantic-ui-react";
+import { Card, Button, Label, Image, Modal } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 import "../../assets/animate.css";
 import QuestionCard from "./QuestionCard";
 import NavbarThree from "../Navbar/Navbar3";
 
-const QuestionList = ({ username, highScore, setState, state }) => {
+const QuestionList = ({ history, username, highScore, setState, state }) => {
+  const [openState, setOpenState] = useState({ open: false })
+
+  const show = (size) => () => setOpenState({ size, open: true })
+  const close = () => setOpenState({ open: false })
+
   let [question, setQuestion] = useState("");
 
   let [answer, setAnswer] = useState([]);
@@ -19,33 +25,15 @@ const QuestionList = ({ username, highScore, setState, state }) => {
   let [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
   let [selectedCandidate, setSelectedCandidate] = useState("");
 
-  // let [guess, setGuess] = useState("");
-
-  // let [score, setScore] = useState(0);
-
-  // let [changeQuestion, setChangeQuestion] = useState(false);
-
-  // let [tries, setTries] = useState(3);
-
-  // let [gameover, setGameover] = useState(false);
-
-  // useEffect(() => {
-  //   if (guess === answer) {
-  //     setScore(score + 100);
-  //     setChangeQuestion(!changeQuestion);
-  //   } else if (tries <= 0) {
-  //     setGameover(true);
-  //   } else {
-  //     tries--;
-  //   }
-
-  //   if (gameover) {
-  //     setGameover(false);
-  //   }
-  // }, [guess]);
-
   function delay(f) {
-    setTimeout(f, 3000);
+    setTimeout(f, 2000);
+  }
+
+  function reset() {
+    setState({
+      ...state, highScore: 0, numberOfGuesses: state.numberOfGuesses + 1, lives: 3
+    })
+    close();
   }
 
   function selectCandidate(event, id) {
@@ -67,12 +55,15 @@ const QuestionList = ({ username, highScore, setState, state }) => {
         () => {
           setState({ ...state, numberOfGuesses: state.numberOfGuesses + 1, lives: newLives });
           setHighlightCorrectAnswer(false);
+          if (state.lives == 1) {
+            show('mini')()
+          }
         }
       );
     }
   }
 
-  useEffect(() => {
+  const getQuestions = () => {
     axiosWithAuth()
       .get("https://lambda-guess-who.herokuapp.com/api/question")
       .then(res => {
@@ -82,9 +73,15 @@ const QuestionList = ({ username, highScore, setState, state }) => {
         setAnswer(res.data.answer);
       })
       .catch(err => console.log(err.response));
+  }
+  useEffect(() => {
+    getQuestions()
   }, [state]);
 
+  console.log(state.lives)
+
   return (
+
     <Card className="question-list-card">
       <NavbarThree highScore={highScore} lives={state.lives} />
       <div className="opponents">
@@ -134,6 +131,21 @@ const QuestionList = ({ username, highScore, setState, state }) => {
           />
         ))}
       </div>
+      <Modal size={openState.size} open={openState.open} onClose={close}>
+        <Modal.Header>Game Over</Modal.Header>
+         <Modal.Content>
+          <p>You ran out of lives...</p>
+        </Modal.Content> 
+        <Modal.Actions>
+         <Button onClick={reset}
+            positive
+            icon='checkmark'
+            labelPosition='right'
+            content='Start a New Game'
+          />
+          <Link to="guesswho"><Button negative>Finish</Button></Link>
+        </Modal.Actions>
+      </Modal>
     </Card>
   );
 };
