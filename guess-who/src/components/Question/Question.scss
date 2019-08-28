@@ -40,11 +40,11 @@
   }
 
   .correctAnswer {
-    border: 5px solid #1ABC9C !important;
+    border: 5px solid #1abc9c !important;
   }
 
   .wrongAnswer {
-     border: 5px solid #E74C3C !important;
+    border: 5px solid #e74c3c !important;
   }
 
   .question {
@@ -84,13 +84,13 @@
           background-color: green;
         }
       }
-      
+
       .follower-count {
-        margin:10%;
+        margin: 10%;
       }
-      
+
       .follower-count {
-        margin:10%;
+        margin: 10%;
       }
     }
   }
@@ -129,31 +129,28 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 
 .ui.active.modal {
   display: flex;
   text-align: center;
 
-  >.header:not(.ui) {
+  > .header:not(.ui) {
     font-size: 2rem;
     text-align: center;
     color: #00b5ad;
   }
-  
-  >:last-child {
+
+  > :last-child {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
 
   .ui.positive.button {
-    background-color:   #00b5ad;
+    background-color: #00b5ad;
   }
 
   .ui.negative.button {
-    background-color:  #E74C3C;
+    background-color: #e74c3c;
   }
 }
->>>>>>> 0ef54adfbfb90936491bfac31f81b145fb68c96f

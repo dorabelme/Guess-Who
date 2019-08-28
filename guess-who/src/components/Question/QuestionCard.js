@@ -8,15 +8,7 @@ const QuestionCard = props => {
   const correctAnswer = "candidate-card correctAnswer";
   const incorrectAnswer = "candidate-card wrongAnswer";
 
-<<<<<<< HEAD
   const addDefaultSrc = ev => {
-=======
-  const defaultClass = "candidate-card";
-  const correctAnswer = "candidate-card correctAnswer";
-  const incorrectAnswer = "candidate-card wrongAnswer";
-
-  const addDefaultSrc =(ev) => {
->>>>>>> 0ef54adfbfb90936491bfac31f81b145fb68c96f
     ev.target.src = "./birdLogo.jpeg";
   };
 
@@ -45,7 +37,11 @@ const QuestionCard = props => {
   function setClass() {
     if (props.highlightCorrectAnswer && props.id === props.answer.id_str) {
       return correctAnswer;
-    } else if (props.highlightCorrectAnswer && props.id !== props.answer.id_str && props.selectedCandidate === props.id) {
+    } else if (
+      props.highlightCorrectAnswer &&
+      props.id !== props.answer.id_str &&
+      props.selectedCandidate === props.id
+    ) {
       return incorrectAnswer;
     } else {
       return defaultClass;
@@ -55,15 +51,11 @@ const QuestionCard = props => {
   return (
     <div onClick={click}>
       <Card className={setClass()}>
-<<<<<<< HEAD
         <Image
           className="card-imgs"
           src={props.imgUrl}
           onError={addDefaultSrc}
         ></Image>
-=======
-        <Image className="card-imgs" src={props.imgUrl} onError={addDefaultSrc}></Image>
->>>>>>> 0ef54adfbfb90936491bfac31f81b145fb68c96f
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
           <Card.Meta>@{props.handle}</Card.Meta>
@@ -77,8 +69,4 @@ const QuestionCard = props => {
   );
 };
 
-<<<<<<< HEAD
 export default QuestionCard;
-=======
-export default QuestionCard;
->>>>>>> 0ef54adfbfb90936491bfac31f81b145fb68c96f

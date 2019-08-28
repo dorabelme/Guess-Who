@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
 
-   .leftNavbar {
+  .leftNavbar {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -16,15 +16,11 @@
   }
 
   .rightNavbar {
-      display: flex;
-      flex-direction: row;
-<<<<<<< HEAD
-      margin-top: 3.5%;
-=======
-      justify-content: flex-end;
-      margin-top: 3.5%;
-      min-width: 10rem;
->>>>>>> 0ef54adfbfb90936491bfac31f81b145fb68c96f
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 3.5%;
+    min-width: 10rem;
   }
 
   img {
@@ -33,7 +29,7 @@
   }
 
   img.heart {
-      padding: 1rem;
+    padding: 1rem;
   }
 
   h1 {
