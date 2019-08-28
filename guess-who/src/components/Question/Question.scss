@@ -7,28 +7,51 @@
       rgba(14, 171, 199, 0.8) 100%) !important;
 
   .question {
-    margin: 5% auto 5% auto;
-    width: 90%;
-    min-height: 200px;
-    background: white;
-    border-radius: 10px;
-    padding: 2%;
+    margin        : 5% auto 5% auto;
+    width         : 90%;
+    min-height    : 200px;
+    background    : white;
+    border-radius : 10px;
+    padding       : 2%;
     padding-bottom: 5%;
-    font-size: 16px;
+    font-size     : 16px;
   }
 
   .question-card {
     display       : flex;
     flex-direction: row;
-    width     : 90%;
+    width         : 90%;
     margin        : 5% auto 5% auto !important;
 
     .card-imgs {
-      width: 30%;
+      width : 100px;
+      height: 100px;
     }
 
     .card-content {
       width: 50%;
+    }
+  }
+
+  .top-row {
+
+    .home-button {
+      border-right: 1px solid grey;
+    }
+
+    .hearts {
+      display  : flex;
+      max-width: 50%;
+
+      .heart {
+        margin   : auto;
+        max-width: 40px;
+      }
+    }
+    .score-label {
+      min-width: 100%;
+      border-radius: 0;
+      font-size: 20px;
     }
   }
 }

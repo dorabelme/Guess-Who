@@ -61,9 +61,8 @@ function App(props) {
         localStorage.setItem("token", res.data.token);
         console.log("username", JSON.parse(res.config.data).username);
         let usernameData = JSON.parse(res.config.data).username;
-        setState({ ...initialState, username: usernameData });
         let tokenData = parseJwt(res.data.token);
-        setState({ ...initialState, userId: tokenData.user.id });
+        setState({ ...initialState, username: usernameData, userId: tokenData.user.id });     
         console.log(tokenData.user.id);
         props.history.push("/guesswho");
       })
@@ -72,8 +71,8 @@ function App(props) {
       });
   };
 
-  console.log("the set data", state);
-  // console.log(tokenData);
+  console.log("the set data", state.username);
+  console.log("this is the state", state);
 
   return (
     <div className="App">
@@ -85,11 +84,16 @@ function App(props) {
       <Route exact path="/register" component={Register} />
 
       <Route path="/guesswho" component={ProtectedGuessWhoPage} />
-      <Route path="/questions" component={ProtectedQuestionList} />
+      <Route
+        path="/questions"
+        render={props => (
+          <ProtectedQuestionList {...props} highScore={state.highScore} />
+        )}
+      />
       <Route
         path="/profile"
         render={props => (
-          <ProtectedProfileCard {...props} username={state.username} />
+          <ProtectedProfileCard {...props} username={state.username} highScore={state.highScore} />
         )}
       />
     </div>
