@@ -31,7 +31,9 @@ const initialState = {
   tweeters: [],
   isLoading: false,
   error: "",
-  highScore: 0
+  highScore: 0,
+  numberOfGuesses: 0,
+  lives: 3
 };
 
 function parseJwt(token) {
@@ -87,7 +89,7 @@ function App(props) {
       <Route
         path="/questions"
         render={props => (
-          <ProtectedQuestionList {...props} highScore={state.highScore} />
+          <ProtectedQuestionList {...props} highScore={state.highScore} setState={setState} state={state} />
         )}
       />
       <Route
