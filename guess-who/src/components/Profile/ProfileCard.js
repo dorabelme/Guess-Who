@@ -3,7 +3,6 @@ import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import NavbarMain from "../Navbar/Navbar2";
 import "../Navbar/navbarTwo.scss";
-import GuessWhoPage from '../GuessWhoPage';
 import { Route, NavLink } from "react-router-dom";
 import "./Profile.scss";
 //Dummy Data before state is able to be passed from login
