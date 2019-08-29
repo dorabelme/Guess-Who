@@ -1,5 +1,5 @@
 import "semantic-ui-css/semantic.min.css";
-import "./dashboard.scss";
+import "./Dashboard.scss";
 import React from "react";
 import { Header, Image, Table } from "semantic-ui-react";
 
