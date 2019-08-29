@@ -79,7 +79,7 @@ export const login = user => dispatch => {
             console.log(tokenData);
             localStorage.setItem("username", user.username);
             localStorage.setItem("userId", tokenData.user.id);
-            dispatch({ type: LOGIN_SUCCESS, payload: { token: res.data.token, username: localStorage.getItem("username", user.username), userId: tokenData.user.id } })            
+            dispatch({ type: LOGIN_SUCCESS, payload: { token: res.data.token, username: usernameData, userId: tokenData.user.id } })            
             return true
         })
         .catch(err => {
