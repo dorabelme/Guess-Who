@@ -18,7 +18,7 @@ const MainPage = props => {
 				props.history.push("/questions");
 			})
 			.catch(e => {
-				console.log(e.response);
+				console.log(e.response); gitr
 			});
 	};
 	return (

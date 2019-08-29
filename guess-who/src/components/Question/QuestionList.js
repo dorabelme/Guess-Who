@@ -1,166 +1,146 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { connect } from 'react-redux';
+
 import { Card, Button, Label, Image, Modal } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import "./Question.scss";
+import "./question.scss";
 import "../../assets/animate.css";
 import QuestionCard from "./QuestionCard";
 import NavbarThree from "../Navbar/Navbar3";
 
-const QuestionList = ({ history, username, highScore, setState, state }) => {
-	const [openState, setOpenState] = useState({ open: false })
+import { getTweets, postScore, setNewHighScore, getUser, login, signup, restartGame, correctGuess, incorrectGuess, getPersonalHighScore } from '../../actions/index';
 
-	const show = (size) => () => setOpenState({ size, open: true })
-	const close = () => setOpenState({ open: false })
+const QuestionList = (props) => {
+  const [openState, setOpenState] = useState({ open: false });
+  
+  let [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
+  let [selectedCandidate, setSelectedCandidate] = useState("");
 
-	let [question, setQuestion] = useState("");
+  const show = (size) => () => setOpenState({ size, open: true })
+  const close = () => setOpenState({ open: false })
 
-	let [answer, setAnswer] = useState([]);
+  function delay(f) {
+    setTimeout(f, 2000);
+  }
 
-	let [candidates, setCandidates] = useState([]);
+  function reset() {
+    props.restartGame();
+    close();
+  }
 
-	let [imgUrl, setImgUrl] = useState("");
+  function selectCandidate(event, id) {
+    setHighlightCorrectAnswer(true);
+    setSelectedCandidate(id);
+    if (id === props.answer.id_str) {
+      delay(
+        () => {
+          props.correctGuess();
+          setHighlightCorrectAnswer(false);
+          props.getTweets();
+        }
+      );         
+    } else {
+      delay(
+        () => {
+          props.incorrectGuess();
 
-	let [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
-	let [selectedCandidate, setSelectedCandidate] = useState("");
+          setHighlightCorrectAnswer(false);
+          props.getTweets();
 
-	function delay(f) {
-		setTimeout(f, 2000);
-	}
+          if (props.lives == 1) {
+            if (props.highScore >= props.personalHighScore) {
+              putHighScores(props.highScore)
+            }
+            getHighScores()
+            show('mini')()
+          }
+        }
+      );
+    }
+  }
 
-	function reset() {
-		setState({
-			...state, highScore: 0, numberOfGuesses: state.numberOfGuesses + 1, lives: 3
-		})
-		close();
-	}
+  const getHighScores = () => {
+    props.getPersonalHighScore(props.userId);
+  }
 
-	function selectCandidate(event, id) {
-		setHighlightCorrectAnswer(true);
-		setSelectedCandidate(id);
+  const putHighScores = (highScore) => {
+    props.postScore(props.userId, highScore);
+  }
 
-		if (id === answer.id_str) {
-			const newLives = Math.min(state.lives + 1, 3);
+  useEffect(() => {
+    props.getTweets();
+    getHighScores();
+  }, []);
 
-			delay(
-				() => {
-					setState({ ...state, highScore: highScore + 100, numberOfGuesses: state.numberOfGuesses + 1, lives: newLives });
-					setHighlightCorrectAnswer(false);
-				}
-			);
-		} else {
-			const newLives = Math.max(state.lives - 1, 0);
-			delay(
-				() => {
-					setState({ ...state, numberOfGuesses: state.numberOfGuesses + 1, lives: newLives });
-					setHighlightCorrectAnswer(false);
-					if (state.lives == 1) {
-						show('mini')()
-					}
-				}
-			);
-		}
-	}
+  return (
 
-	const getHighScores = () => {
-		axiosWithAuth()
-			.get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`)
-			.then(res => {
-				console.log(res);
-			})
-		// .catch(err => console.log(err.response));
-	}
+    <Card className="question-list-card">
+      <NavbarThree highScore={props.highScore} lives={props.lives} />
+      <Label color="yellow" image>
 
-	const getQuestions = () => {
-		axiosWithAuth()
-			.get("https://lambda-guess-who.herokuapp.com/api/question")
-			.then(res => {
-				console.log(res);
-				setQuestion(res.data.question);
-				setCandidates(res.data.candidates);
-				setAnswer(res.data.answer);
-			})
-			.catch(err => console.log(err.response));
-	}
-	useEffect(() => {
-		getQuestions()
-	}, [state]);
-
-	//   useEffect(() => {
-	//     getHighScores()
-	//   }, [state]);
-
-	console.log(state.userId)
-
-	return (
-
-		<Card className="question-list-card">
-			<NavbarThree highScore={highScore} lives={state.lives} />
-			<div className="opponents">
-				<div className="opponents-div-1">
-					<Label color="teal" image>
-						{/* <img src="./birdLogo.jpeg" /> */}
-						Name
-          <Label.Detail>Score</Label.Detail>
-					</Label>
-					<Label color="teal" image>
-						{/* <img src="./birdLogo.jpeg" /> */}
-						Name
-          <Label.Detail>Score</Label.Detail>
-					</Label>
-				</div>
-				<div className="opponents-div-2">
-					<Label color="teal" image>
-						{/* <img src="./birdLogo.jpeg" /> */}
-						Name
-          <Label.Detail>Score</Label.Detail>
-					</Label>
-					<Label color="teal" image>
-						{/* <img src="./birdLogo.jpeg" /> */}
-						Name
-          <Label.Detail>Score</Label.Detail>
-					</Label>
-				</div>
-			</div>
-			<div className="question">
-				<h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
-				<p>"{question}"</p>
-			</div>
-			<div className="candidate-card-div">
-				{candidates.map(candidate => (
-					//question cards are not yet clickable/do not have a link
-					<QuestionCard answer={answer}
-						selectCandidate={selectCandidate}
-						id={candidate.id.id_str}
-						key={Math.random().toString(36).substring(7)}
-						question={question}
-						imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
-						name={candidate.id.name}
-						handle={candidate.handle}
-						followers={candidate.id.followers_count}
-						highlightCorrectAnswer={highlightCorrectAnswer}
-						selectedCandidate={selectedCandidate}
-					/>
-				))}
-			</div>
-			<Modal size={openState.size} open={openState.open} onClose={close}>
-				<Modal.Header>Game Over</Modal.Header>
-				<Modal.Content>
-					<p>You ran out of lives...</p>
-				</Modal.Content>
-				<Modal.Actions>
-					<Button onClick={reset}
-						positive
-						icon='checkmark'
-						labelPosition='right'
-						content='Start a New Game'
-					/>
-					<Link to="guesswho"><Button negative>Finish</Button></Link>
-				</Modal.Actions>
-			</Modal>
-		</Card>
-	);
+        {/* <img src="./birdLogo.jpeg" /> */}
+        Score:
+          <Label.Detail>{props.highScore}</Label.Detail>
+      </Label>
+      <div className="opponents">       
+        <div className="opponents-div-1">
+          <Label color="teal" image>
+          {/* <img src="./birdLogo.jpeg" /> */}
+          {props.username}
+            <Label.Detail>Personal Highest Score: {props.personalHighScore}</Label.Detail>
+        </Label>
+        </div>
+      </div>
+      <div className="question">
+        <h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
+        <p>"{props.question}"</p>
+      </div>
+      <div className="candidate-card-div">
+        {props.candidates.map(candidate => (
+          <QuestionCard answer={props.answer}
+            selectCandidate={selectCandidate}
+            id={candidate.id.id_str}
+            key={Math.random().toString(36).substring(7)}
+            question={props.question}
+            imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
+            name={candidate.id.name}
+            handle={candidate.handle}
+            followers={candidate.id.followers_count}
+            highlightCorrectAnswer={highlightCorrectAnswer}
+            selectedCandidate={selectedCandidate}
+          />
+        ))}
+      </div>
+      <Modal size={openState.size} open={openState.open} onClose={close}>
+        <Modal.Header>Game Over</Modal.Header>
+         <Modal.Content>
+          <p>You ran out of lives...</p>
+        </Modal.Content> 
+        <Modal.Actions>
+         <Button onClick={reset}
+            positive
+            icon='checkmark'
+            labelPosition='right'
+            content='Start a New Game'
+          />
+          <Link to="guesswho"><Button negative>Finish</Button></Link>
+        </Modal.Actions>
+      </Modal>
+    </Card>
+  );
 };
-export default QuestionList;
 
+const mapStateToProps = state => {
+  return {
+    ...state,
+    candidates: state.tweeters,
+    question: state.tweet,
+    userId: localStorage.getItem("userId")
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { getTweets, postScore, setNewHighScore, getUser, login, signup, restartGame, correctGuess, incorrectGuess, getPersonalHighScore }
+)(QuestionList);
