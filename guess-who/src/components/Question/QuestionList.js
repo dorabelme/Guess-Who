@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { connect } from "react-redux";
+
 import { Card, Button, Label, Image, Modal } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import "./Question.scss";
+import "./question.scss";
 import "../../assets/animate.css";
 import QuestionCard from "./QuestionCard";
 import NavbarThree from "../Navbar/Navbar3";
 
-const QuestionList = ({ username, highScore, setState, state }) => {
-  const [openState, setOpenState] = useState({ open: false });
-  const [personalScore, setPersonalScore] = useState();
+import {
+  getTweets,
+  postScore,
+  setNewHighScore,
+  getUser,
+  login,
+  signup,
+  restartGame,
+  correctGuess,
+  incorrectGuess,
+  getPersonalHighScore
+} from "../../actions/index";
 
-  let [question, setQuestion] = useState("");
-  let [answer, setAnswer] = useState([]);
-  let [candidates, setCandidates] = useState([]);
+const QuestionList = props => {
+  const [openState, setOpenState] = useState({ open: false });
+
   let [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
   let [selectedCandidate, setSelectedCandidate] = useState("");
 
@@ -26,125 +36,85 @@ const QuestionList = ({ username, highScore, setState, state }) => {
   }
 
   function reset() {
-    setState({
-      ...state,
-      highScore: 0,
-      numberOfGuesses: state.numberOfGuesses + 1,
-      lives: 3
-    });
+    props.restartGame();
     close();
   }
 
   function selectCandidate(event, id) {
     setHighlightCorrectAnswer(true);
     setSelectedCandidate(id);
-    if (id === answer.id_str) {
-      const newLives = Math.min(state.lives + 1, 3);
+    if (id === props.answer.id_str) {
       delay(() => {
-        setState({
-          ...state,
-          highScore: highScore + 1,
-          numberOfGuesses: state.numberOfGuesses + 1,
-          lives: newLives
-        });
+        props.correctGuess();
         setHighlightCorrectAnswer(false);
+        props.getTweets();
       });
     } else {
-      const newLives = Math.max(state.lives - 1, 0);
       delay(() => {
-        setState({
-          ...state,
-          numberOfGuesses: state.numberOfGuesses + 1,
-          lives: newLives
-        });
+        props.incorrectGuess();
+
         setHighlightCorrectAnswer(false);
-        if (state.lives == 1) {
-          if (highScore >= personalScore) {
-            putHighScores(highScore);
+        props.getTweets();
+
+        if (props.lives == 1) {
+          if (props.highScore >= props.personalHighScore) {
+            putHighScores(props.highScore);
           }
           getHighScores();
           show("mini")();
         }
+        getHighScores();
+        show("mini")();
       });
     }
   }
 
   const getHighScores = () => {
-    axiosWithAuth()
-      .get(
-        `https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`
-      )
-      .then(res => {
-        setPersonalScore(res.data);
-      })
-      .catch(err => console.log(err.response));
+    props.getPersonalHighScore(props.userId);
   };
 
   const putHighScores = highScore => {
-    const json = { highscore: highScore };
-    axiosWithAuth()
-      .put(
-        `https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`,
-        json
-      )
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.log(err.response));
+    props.postScore(props.userId, highScore);
   };
 
-  const getQuestions = () => {
-    axiosWithAuth()
-      .get("https://lambda-guess-who.herokuapp.com/api/question")
-      .then(res => {
-        console.log(res);
-        setQuestion(res.data.question);
-        setCandidates(res.data.candidates);
-        setAnswer(res.data.answer);
-      })
-      .catch(err => console.log(err.response));
-  };
   useEffect(() => {
-    getQuestions();
-  }, [state]);
-
-  // useEffect(() => {
-  //   getHighScores()
-  // }, [state]);
-
-  console.log(state.userId);
+    props.getTweets();
+    getHighScores();
+  }, []);
 
   return (
     <Card className="question-list-card">
-      <NavbarThree highScore={highScore} lives={state.lives} />
+      <NavbarThree highScore={props.highScore} lives={props.lives} />
       <Label color="yellow" image>
         {/* <img src="./birdLogo.jpeg" /> */}
         Score:
-        <Label.Detail>{highScore}</Label.Detail>
+        <Label.Detail>{props.highScore}</Label.Detail>
       </Label>
       <div className="opponents">
         <div className="opponents-div-1">
           <Label color="teal" image>
             {/* <img src="./birdLogo.jpeg" /> */}
-            {username}
-            <Label.Detail>High Score: {personalScore}</Label.Detail>
+            {props.username}
+            <Label.Detail>
+              Personal Highest Score: {props.personalHighScore}
+            </Label.Detail>
           </Label>
         </div>
       </div>
       <div className="question">
         <h2 className="animated heartBeat delay-2s">Who's Tweet is it?</h2>
-        <p>"{question}"</p>
+        <p>"{props.question}"</p>
       </div>
       <div className="candidate-card-div">
-        {candidates.map(candidate => (
+        {props.candidates.map(candidate => (
           <QuestionCard
-            answer={answer}
+            answer={props.answer}
             selectCandidate={selectCandidate}
             id={candidate.id.id_str}
             key={Math.random()
               .toString(36)
               .substring(7)}
-            question={question}
+            question={props.question}
             imgUrl={candidate.id.profile_image_url.replace("normal", "bigger")}
             name={candidate.id.name}
             handle={candidate.handle}
@@ -175,4 +145,28 @@ const QuestionList = ({ username, highScore, setState, state }) => {
     </Card>
   );
 };
-export default QuestionList;
+
+const mapStateToProps = state => {
+  return {
+    ...state,
+    candidates: state.tweeters,
+    question: state.tweet,
+    userId: localStorage.getItem("userId")
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getTweets,
+    postScore,
+    setNewHighScore,
+    getUser,
+    login,
+    signup,
+    restartGame,
+    correctGuess,
+    incorrectGuess,
+    getPersonalHighScore
+  }
+)(QuestionList);

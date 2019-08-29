@@ -54,7 +54,7 @@
   }
 
   .ui.accordion:not(.styled) .title ~ .content:not(.ui).active.profileCard {
-    height: 150px;
+    height: 75px !important;
     width: 131px;
     border: 1px solid #979797;
     background-color: #ffffff;

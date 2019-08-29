@@ -4,7 +4,7 @@ import "./navbar.scss";
 import "./navbarTwo.scss";
 import { Accordion, Icon } from "semantic-ui-react";
 
-function NavbarMain({ username }) {
+function NavbarMain({ userName }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [openModal, setOpen] = useState(false);
@@ -35,10 +35,10 @@ function NavbarMain({ username }) {
           <div className="sideNavButtons">
             <Accordion.Title active={openModal} index={0} onClick={handleClick}>
               <Icon name="dropdown" size="big" />
-              {username}
+              {userName}
             </Accordion.Title>
             <Accordion.Content active={openModal} className="profileCard">
-              <div>{console.log("this is user", username)}</div>
+              <div>{console.log("this is user", userName)}</div>
               <Link to="/profile">
                 <div className="editProfileBtn" onClick={show}>
                   Profile

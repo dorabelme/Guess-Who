@@ -60,11 +60,13 @@
   }
 
   .correctAnswer {
-    border: 5px solid #1abc9c !important;
+    // border: 5px solid #1ABC9C !important;
+    background-color: #1abc9c !important;
   }
 
   .wrongAnswer {
-    border: 5px solid #e74c3c !important;
+    //  border: 5px solid #E74C3C !important;
+    background-color: #e74c3c !important;
   }
 
   .question {
@@ -105,10 +107,6 @@
       .card-content {
         width: 50%;
         padding-top: 2.5rem;
-
-        .correct {
-          background-color: green;
-        }
       }
 
       .follower-count {
