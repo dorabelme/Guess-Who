@@ -27,21 +27,21 @@ const ProtectedGuessWhoPage = protectRoute(GuessWhoPage);
 const ProtectedQuestionList = protectRoute(QuestionList);
 const ProtectedProfileCard = protectRoute(ProfileCard);
 
-// initialState
-const initialState = {
-  username: "",
-  token: "",
-  userId: "",
-  question: [],
-  answer: [],
-  tweet: "",
-  tweeters: [],
-  isLoading: false,
-  error: "",
-  highScore: 0,
-  numberOfGuesses: 0,
-  lives: 3
-};
+// // initialState
+// const initialState = {
+//   username: "",
+//   token: "",
+//   userId: "",
+//   question: [],
+//   answer: [],
+//   tweet: "",
+//   tweeters: [],
+//   isLoading: false,
+//   error: "",
+//   highScore: 0,
+//   numberOfGuesses: 0,
+//   lives: 3
+// };
 
 // App
 function App(props) {

@@ -42,6 +42,7 @@
   .opponents-div-1 .label {
     transform: scale(1.4);
     border-radius: 0;
+
   }
 
   .ui.image.label .detail {
@@ -49,11 +50,13 @@
   }
 
   .correctAnswer {
-    border: 5px solid #1ABC9C !important;
+    // border: 5px solid #1ABC9C !important;
+    background-color: #1ABC9C !important;
   }
 
   .wrongAnswer {
-     border: 5px solid #E74C3C !important;
+    //  border: 5px solid #E74C3C !important;
+     background-color:#E74C3C !important;
   }
 
   .question {
@@ -75,20 +78,25 @@
     }
 
     .candidate-card {
-      display       : flex;
+     display: flex;
       flex-direction: row;
-      width         : 80%;
-      height        : 100px;
-      margin        : 5% auto 5% auto !important;
-      border-radius: 0;
+      align-items: center;
+      width: 80%;
+      height: 100px;
+      margin: 5% auto 5% auto !important;
+      border-radius: 5px;
 
-      .card-imgs {
-        width : 100px;
-        height: 100px;
+        .card-imgs {
+        position: relative !important;
+        padding: 5px;
+        width: 75px;
+        height: 75px;
+        border-radius: 50px !important;
       }
 
       .card-content {
         width: 50%;
+        padding-top: 2.5rem;
       }
       
       .follower-count {

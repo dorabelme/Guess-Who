@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { connect } from 'react-redux';
 
 import { Card, Button, Label, Image, Modal } from "semantic-ui-react";

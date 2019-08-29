@@ -1,6 +1,6 @@
 import React from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Card, Image, Label, Button } from "semantic-ui-react";
+import { Card, Image, Label, Button, Table } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import "./dashboard.scss";
@@ -13,38 +13,37 @@ let friendList = [
     username: "richards",
     id: "5d65cf2bdc88360017ea1e1b",
     imgSrc: "./richard.jpg",
-    highscore: 0
+    highscore: 24
   },
   {
     username: "dorab",
     id: "5d66f018f66ac900174b2b2d",
     imgSrc: "./dora.jpg",
-    highscore: 0
+    highscore: 42
   },
   {
-    username: "deejayeaster",
+    username: "deejay",
     id: "5d6414d32c7f870017924f82",
     imgSrc: "./deejay.png",
-    highscore: 0
+    highscore: 2
   },
   {
     username: "taran",
     id: "5d643bea4ec62500173c50cd",
     imgSrc: "./taran.png",
-    highscore: 0
+    highscore: 999
   }
 ];
 
-const MainPage = ({history, username}) => {
-
-  const getHighScores = (user) => {
+const MainPage = ({ history, username, highScore }) => {
+  const getHighScores = user => {
     axiosWithAuth()
-      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${user.id}`)
+      .get(`https://lambda-guess-who.herokuapp.com/api/user/${user.id}`)
       .then(res => {
-        console.log(res);
+        console.log("the res data", res);
       })
       .catch(err => console.log(err.response));
-  }
+  };
 
   const handleSubmit = () => {
     const url = "https://lambda-guess-who.herokuapp.com/amIAuthed";
@@ -65,29 +64,34 @@ const MainPage = ({history, username}) => {
       <div className="upperNav">
         <Link to="/profile">
           <div className="profile-pin">
-            <Card.Content>
-              <Card.Header>{username}</Card.Header>
-            </Card.Content>
             <Image
-              src="https://react.semantic-ui.com/images/avatar/large/elliot.jpg"
+              src="https://www.m2.com.lb/modules//smartblog/images/139.jpg"
               size="small"
             />
           </div>
         </Link>
       </div>
       <div>
-        <Button type="submit" className="btn" onClick={handleSubmit}>Play</Button>
+        <Button type="submit" className="btn" onClick={handleSubmit} primary>
+          Play
+        </Button>
       </div>
       <div className="highscore-list">
-        {friendList.map(player => (
-          <FriendCard 
-            key={player.id}
-            username={player.username}
-            id={player.id}
-            imgSrc={player.imgSrc}
-            highscore={getHighScores(player)}
-          />
-        ))}
+        <div className="header">Top Highscores</div>
+        {friendList.map(
+          player => (
+            console.log("player:", player),
+            (
+              <FriendCard
+                key={player.id}
+                username={player.username}
+                id={player.id}
+                imgSrc={player.imgSrc}
+                highscore={highScore}
+              />
+            )
+          )
+        )}
       </div>
     </Card>
   );
