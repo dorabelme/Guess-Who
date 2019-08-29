@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Card, Image, Label, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
@@ -36,6 +36,8 @@ let friendList = [
 ];
 
 const MainPage = ({history, username}) => {
+
+  let [highscore, setHighscore] = useState(0);
 
   const getHighScores = (user) => {
     axiosWithAuth()
