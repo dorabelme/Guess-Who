@@ -46,23 +46,14 @@ function parseJwt(token) {
   var jsonPayload = decodeURIComponent(
     atob(base64)
       .split("")
-<<<<<<< HEAD
       .map(function(c) {
-=======
-      .map(function (c) {
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
       })
       .join("")
   );
 
   return JSON.parse(jsonPayload);
-<<<<<<< HEAD
 }
-=======
-};
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
-
 
 // App
 function App(props) {
@@ -78,15 +69,11 @@ function App(props) {
         console.log("username", JSON.parse(res.config.data).username);
         let usernameData = JSON.parse(res.config.data).username;
         let tokenData = parseJwt(res.data.token);
-<<<<<<< HEAD
         setState({
           ...initialState,
           username: usernameData,
           userId: tokenData.user.id
         });
-=======
-        setState({ ...initialState, username: usernameData, userId: tokenData.user.id });     
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
         console.log(tokenData.user.id);
         props.history.push("/guesswho");
       })
@@ -94,18 +81,16 @@ function App(props) {
         console.log(e.response);
       });
   };
-<<<<<<< HEAD
-=======
   useEffect(() => {
     axiosWithAuth()
-      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`)
+      .get(
+        `https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`
+      )
       .then(res => {
-        setState(setState({ ...initialState, highScore: res.data })
-        )
+        setState(setState({ ...initialState, highScore: res.data }));
       })
       .catch(err => console.log(err.response));
   }, []);
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
 
   console.log("the set data", state.username);
   console.log("this is the state", state);
@@ -119,51 +104,31 @@ function App(props) {
       />
       <Route exact path="/register" component={Register} />
 
-<<<<<<< HEAD
       <Route
         path="/guesswho"
         render={props => (
-          <ProtectedGuessWhoPage
-            {...props}
-            highScore={state.highScore}
-            setState={setState}
-            state={state}
-          />
+          <ProtectedGuessWhoPage {...props} username={state.username} />
         )}
-=======
-      
-      <Route path="/guesswho" render={props => (
-        <ProtectedGuessWhoPage {...props} username={state.username} />
-      )}
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
       />
       <Route
         path="/questions"
         render={props => (
-<<<<<<< HEAD
           <ProtectedQuestionList
             {...props}
             highScore={state.highScore}
             setState={setState}
             state={state}
           />
-=======
-          <ProtectedQuestionList {...props} highScore={state.highScore} setState={setState} state={state} />
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
         )}
       />
       <Route
         path="/profile"
         render={props => (
-<<<<<<< HEAD
           <ProtectedProfileCard
             {...props}
             username={state.username}
             highScore={state.highScore}
           />
-=======
-          <ProtectedProfileCard {...props} username={state.username} highScore={state.highScore} />
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
         )}
       />
     </div>

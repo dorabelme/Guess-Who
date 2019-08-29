@@ -14,29 +14,24 @@
     width: 90%;
   }
 
-  .ui.red.label {
+  .ui.yellow.label {
     height: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     font-size: 1.4rem;
+    margin: 0;
+    border-radius: 0;
   }
 
   .opponents-div-1 {
-<<<<<<< HEAD
     display: flex;
-    flex-wrap: wrap;
-    margin: 5% auto;
-    width: 40%;
-=======
-    display  : flex;
     flex-wrap: row;
     justify-content: center;
     align-items: center;
-    margin   : 5% auto;
-    width    : 50%;
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
+    margin: 5% auto;
+    width: 50%;
   }
 
   .opponents-div-2 {
@@ -47,19 +42,17 @@
   }
 
   .opponents-div-1 .label {
-<<<<<<< HEAD
     margin: 5%;
     left: 10%;
-=======
     // margin   : 5%;
     // left     : 10%;
->>>>>>> 4c8d266a086fd58907f979445d3943446c32c21e
     transform: scale(1.4);
   }
 
   .opponents-div-2 .label {
     margin: 5%;
     transform: scale(1.4);
+    border-radius: 0;
   }
 
   .ui.image.label .detail {
@@ -79,10 +72,10 @@
     width: 90%;
     min-height: 200px;
     background: white;
-    border-radius: 10px;
     padding: 2%;
     padding-bottom: 5%;
     font-size: 16px;
+    border-radius: 5px;
   }
 
   .candidate-card-div {
@@ -98,6 +91,7 @@
       width: 80%;
       height: 100px;
       margin: 5% auto 5% auto !important;
+      border-radius: 0;
 
       .card-imgs {
         width: 100px;
