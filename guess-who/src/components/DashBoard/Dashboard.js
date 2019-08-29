@@ -4,7 +4,6 @@ import { Card, Image, Label, Button, Table } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import "./dashboard.scss";
-// import { UserContext } from "../contexts/UserContext";
 import NavbarMain from "../Navbar/Navbar2";
 import FriendCard from "./FriendCard";
 
@@ -35,7 +34,8 @@ let friendList = [
   }
 ];
 
-const MainPage = ({ history, username, highScore }) => {
+const MainPage = ({ history, userName, highScore }) => {
+  console.log(userName)
   const getHighScores = user => {
     axiosWithAuth()
       .get(`https://lambda-guess-who.herokuapp.com/api/user/${user.id}`)
@@ -60,7 +60,7 @@ const MainPage = ({ history, username, highScore }) => {
   };
   return (
     <Card className="dashboard-card">
-      <NavbarMain username={username} />
+      <NavbarMain userName={userName} />
       <div className="upperNav">
         <Link to="/profile">
           <div className="profile-pin">
@@ -70,6 +70,7 @@ const MainPage = ({ history, username, highScore }) => {
             />
           </div>
         </Link>
+        {/* <div>Username: {userName}</div> */}
       </div>
       <div>
         <Button type="submit" className="btn" onClick={handleSubmit} primary>

@@ -12,21 +12,22 @@ const profile = {
 	header: "My Profile: ",
 	description: "I want to tweet the very best. "
 };
-export default function ProfileCard({ username, highScore }) {
+export default function ProfileCard({ userName, highScore }) {
+	console.log(userName, highScore )
 	// const [avatar, getAvatar] = useState({})
 
 	const newScores = highScore;
 
 	return (
 		<>
-			<NavbarFour username={username} />
+			<NavbarFour userName={userName} />
 
 			<div className="profile-card">
 				<Card>
 					<Image src={profile.avatar} />
 					<Card.Content>
 						<Card.Header>
-							<h1 className="userName">{username}</h1>
+							<h1 className="userName">{userName}</h1>
 						</Card.Header>
 						{/* <h2>{profile.header}</h2> */}
 						<ProgressBar percentage={newScores} />
@@ -43,3 +44,4 @@ export default function ProfileCard({ username, highScore }) {
 		</>
 	);
 }
+

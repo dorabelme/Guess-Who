@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from 'react-redux';
 import { Route, Redirect } from "react-router-dom";
-import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
-import GuessWhoPage from "./components/DashBoard/Dashboard";
+import MainPage from "./components/DashBoard/Dashboard";
 import QuestionList from "./components/Question/QuestionList";
 import ProfileCard from "./components/Profile/ProfileCard";
 
@@ -23,25 +22,9 @@ const protectRoute = Component => props => {
   }
 };
 
-const ProtectedGuessWhoPage = protectRoute(GuessWhoPage);
+const ProtectedMainPage = protectRoute(MainPage);
 const ProtectedQuestionList = protectRoute(QuestionList);
 const ProtectedProfileCard = protectRoute(ProfileCard);
-
-// // initialState
-// const initialState = {
-//   username: "",
-//   token: "",
-//   userId: "",
-//   question: [],
-//   answer: [],
-//   tweet: "",
-//   tweeters: [],
-//   isLoading: false,
-//   error: "",
-//   highScore: 0,
-//   numberOfGuesses: 0,
-//   lives: 3
-// };
 
 // App
 function App(props) {
@@ -64,9 +47,9 @@ function App(props) {
   //     .catch(err => console.log(err.response));
   // }, []);
 
-  // console.log("the set data", state.username);
-  // console.log("this is the state", state);
-
+  console.log("the set data", props.username);
+  console.log("this is the state", props.state);
+  
   return (
     <div className="App">
       <Route
@@ -78,7 +61,7 @@ function App(props) {
       <Route exact path="/register" render={props => <Register {...props} getSignup={getSignup} />} />
 
       <Route path="/guesswho" render={props => (
-        <ProtectedGuessWhoPage {...props} username={props.username} />
+        <ProtectedMainPage {...props} userName={props.username} />
       )}
       />
       <Route
@@ -90,7 +73,7 @@ function App(props) {
       <Route
         path="/profile"
         render={props => (
-          <ProtectedProfileCard {...props} username={props.username} highScore={props.highScore} />
+          <ProtectedProfileCard {...props} username={props.username} userId={props.userId} highScore={props.highScore} />
         )}
       />
     </div>
