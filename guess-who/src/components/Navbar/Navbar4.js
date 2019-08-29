@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-// import "./navbar.scss";
+import { connect } from 'react-redux';
+
+import "./navbarTwo.scss";
 import "./navbarFour.scss";
 import { Accordion, Icon } from 'semantic-ui-react';
 
 
-function NavbarFour({ username }) {
+function NavbarFour(props) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const [openModal, setOpen] = useState(false)
@@ -31,22 +33,43 @@ function NavbarFour({ username }) {
             </div>
             <div className="sideNavBar">
                 {/* <NavBar /> */}
-                < Accordion >
+                <Accordion>
                     <div className="sideNavButtons">
                         <Accordion.Title active={openModal} index={0} onClick={handleClick}>
-                            <Icon name='angle down' size="big" />
+                            <Icon name="dropdown" size="big" />
+                            {props.username}
                         </Accordion.Title>
                         <Accordion.Content active={openModal} className="profileCard">
-                            <div>{username}</div>
-                            <Link to="/profile"><div className="editProfileBtn" onClick={show}>Profile</div></Link>
+                            <div>{console.log("this is user", props.username)}</div>
+                            <Link to="/profile">
+                                <div className="editProfileBtn" onClick={show}>
+                                    Profile
+                </div>
+                            </Link>
                             <Link onClick={signOut}>Sign Out</Link>
                         </Accordion.Content>
                     </div>
-                </Accordion >
+                </Accordion>
             </div>
 
         </div>
     )
 }
 
-export default NavbarFour;
+const mapStateToProps = state => {
+    return {
+        tweet: state.tweet,
+        tweeters: state.tweeters,
+        highScore: state.highScore,
+        username: state.username,
+        userId: state.userId,
+        token: state.token,
+        personalHighScore: state.personalHighScore,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {}
+)(NavbarFour);
+

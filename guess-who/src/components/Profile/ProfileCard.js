@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from 'react-redux';
+
 import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./profile.scss";
@@ -12,22 +14,21 @@ const profile = {
 	header: "My Profile: ",
 	description: "I want to tweet the very best. "
 };
-export default function ProfileCard({ userName, highScore }) {
-	console.log(userName, highScore )
+function ProfileCard(props) {
 	// const [avatar, getAvatar] = useState({})
 
-	const newScores = highScore;
+	const newScores = props.personalHighScore;
 
 	return (
 		<>
-			<NavbarFour userName={userName} />
+			<NavbarFour />
 
 			<div className="profile-card">
 				<Card>
 					<Image src={profile.avatar} />
 					<Card.Content>
 						<Card.Header>
-							<h1 className="userName">{userName}</h1>
+							<h1 className="userName">{props.username}</h1>
 						</Card.Header>
 						{/* <h2>{profile.header}</h2> */}
 						<ProgressBar percentage={newScores} />
@@ -44,4 +45,20 @@ export default function ProfileCard({ userName, highScore }) {
 		</>
 	);
 }
+
+const mapStateToProps = state => {
+	return {
+		...state,
+		username: state.username,
+		userId: state.userId,
+		token: state.token,
+		personalHighScore: state.personalHighScore,
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	{}
+)(ProfileCard);
+
 

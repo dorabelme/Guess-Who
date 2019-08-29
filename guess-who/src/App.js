@@ -48,7 +48,7 @@ function App(props) {
   // }, []);
 
   console.log("the set data", props.username);
-  console.log("this is the state", props.state);
+
   
   return (
     <div className="App">
@@ -61,7 +61,7 @@ function App(props) {
       <Route exact path="/register" render={props => <Register {...props} getSignup={getSignup} />} />
 
       <Route path="/guesswho" render={props => (
-        <ProtectedMainPage {...props} userName={props.username} />
+        <ProtectedMainPage {...props} />
       )}
       />
       <Route
@@ -73,7 +73,7 @@ function App(props) {
       <Route
         path="/profile"
         render={props => (
-          <ProtectedProfileCard {...props} username={props.username} userId={props.userId} highScore={props.highScore} />
+          <ProtectedProfileCard {...props} />
         )}
       />
     </div>
@@ -82,13 +82,13 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    ...state,
     tweet: state.tweet,
     tweeters: state.tweeters,
     highScore: state.highScore,
     username: state.username,
     userId: state.userId,
-    token: state.token
+    token: state.token,
+    personalHighScore: state.personalHighScore,
   }
 }
 
