@@ -52,7 +52,9 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 signingUp: false,
                 error: '',
-                token: action.payload.token
+                token: action.payload.token,
+                username: action.payload.username,
+                userId: action.payload.userId                
             }
         case SIGNUP_FAILURE:
             return {
