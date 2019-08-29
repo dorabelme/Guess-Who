@@ -56,19 +56,8 @@ export const signup = user => dispatch => {
     .post(SIGNUP_BACKEND_POINT, user)
     .then(res => {
       console.log("response ", res);
-      let tokenData = parseJwt(res.data.token);
-      let usernameData = JSON.parse(res.config.data).username;
-
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("username", usernameData);
-      localStorage.setItem("userId", tokenData.user.id);
-      
-      dispatch({
-        type: SIGNUP_SUCCESS, payload: {
-          token: res.data.token,
-          username: usernameData,
-          userId: tokenData.user.id
-        } });
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
       return true;
     })
     .catch(err => {
