@@ -4,13 +4,30 @@ import "semantic-ui-css/semantic.min.css";
 import "./Question.scss";
 
 const QuestionCard = props => {
-
   const defaultClass = "candidate-card";
   const correctAnswer = "candidate-card correctAnswer";
   const incorrectAnswer = "candidate-card wrongAnswer";
 
-  const addDefaultSrc =(ev) => {
+  const addDefaultSrc = ev => {
     ev.target.src = "./birdLogo.jpeg";
+  };
+
+  function click(event) {
+    props.selectCandidate(event, props.id);
+  }
+
+  function setClass() {
+    if (props.highlightCorrectAnswer && props.id === props.answer.id_str) {
+      return correctAnswer;
+    } else if (
+      props.highlightCorrectAnswer &&
+      props.id !== props.answer.id_str &&
+      props.selectedCandidate === props.id
+    ) {
+      return incorrectAnswer;
+    } else {
+      return defaultClass;
+    }
   }
 
   function click(event) {
@@ -20,7 +37,11 @@ const QuestionCard = props => {
   function setClass() {
     if (props.highlightCorrectAnswer && props.id === props.answer.id_str) {
       return correctAnswer;
-    } else if (props.highlightCorrectAnswer && props.id !== props.answer.id_str && props.selectedCandidate === props.id) {
+    } else if (
+      props.highlightCorrectAnswer &&
+      props.id !== props.answer.id_str &&
+      props.selectedCandidate === props.id
+    ) {
       return incorrectAnswer;
     } else {
       return defaultClass;
@@ -30,13 +51,17 @@ const QuestionCard = props => {
   return (
     <div onClick={click}>
       <Card className={setClass()}>
-        <Image className="card-imgs" src={props.imgUrl} onError={addDefaultSrc}></Image>
+        <Image
+          className="card-imgs"
+          src={props.imgUrl}
+          onError={addDefaultSrc}
+        ></Image>
         <Card.Content className="card-content">
           <Card.Header>{props.name}</Card.Header>
           <Card.Meta>@{props.handle}</Card.Meta>
           <div className="follower-count">
             <Icon name="users" />
-            Followers: {props.followers}
+            {props.followers}
           </div>
         </Card.Content>
       </Card>
