@@ -1,47 +1,13 @@
+
 .App {
   text-align: center;
   width: 414px;
   height: 736px;
   margin: 20px auto;
   border: 1px solid grey;
-  background: linear-gradient(109deg, #4b44c8, #429ed0) !important;
-  background-size: 800% 800% !important;
-
-  -webkit-animation: AnimationName 8s ease infinite !important;
-  -moz-animation: AnimationName 8s ease infinite !important;
-  animation: AnimationName 8s ease infinite !important;
-
-  @-webkit-keyframes AnimationName {
-    0% {
-      background-position: 0% 65%;
-    }
-    50% {
-      background-position: 100% 36%;
-    }
-    100% {
-      background-position: 0% 65%;
-    }
-  }
-  @-moz-keyframes AnimationName {
-    0% {
-      background-position: 0% 65%;
-    }
-    50% {
-      background-position: 100% 36%;
-    }
-    100% {
-      background-position: 0% 65%;
-    }
-  }
-  @keyframes AnimationName {
-    0% {
-      background-position: 0% 65%;
-    }
-    50% {
-      background-position: 100% 36%;
-    }
-    100% {
-      background-position: 0% 65%;
-    }
-  }
+  background-image: linear-gradient(
+    135deg,
+    rgba(31, 4, 184, 0.8) 0%,
+    rgba(14, 171, 199, 0.8) 100%
+  );
 }
