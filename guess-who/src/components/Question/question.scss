@@ -1,15 +1,17 @@
 .question-list-card {
-  display       : flex;
+  display: flex;
   flex-direction: column;
-  min-width     : 100%;
-  background-image: linear-gradient(135deg,
-      rgba(31, 4, 184, 0.8) 0%,
-      rgba(14, 171, 199, 0.8) 100%) !important;
+  min-width: 100%;
+  background-image: linear-gradient(
+    135deg,
+    rgba(31, 4, 184, 0.8) 0%,
+    rgba(14, 171, 199, 0.8) 100%
+  ) !important;
 
   .opponents {
     display: flex;
-    margin : auto;
-    width  : 90%;
+    margin: auto;
+    width: 90%;
   }
 
   .ui.yellow.label {
@@ -24,25 +26,33 @@
   }
 
   .opponents-div-1 {
-    display  : flex;
+    display: flex;
     flex-wrap: row;
     justify-content: center;
     align-items: center;
-    margin   : 5% auto;
-    width    : 50%;
+    margin: 5% auto;
+    width: 50%;
   }
 
   .opponents-div-2 {
-    display  : flex;
+    display: flex;
     flex-wrap: wrap;
-    margin   : 5% auto;
-    width    : 40%;
+    margin: 5% auto;
+    width: 40%;
   }
 
   .opponents-div-1 .label {
+    margin: 5%;
+    left: 10%;
+    // margin   : 5%;
+    // left     : 10%;
+    transform: scale(1.4);
+  }
+
+  .opponents-div-2 .label {
+    margin: 5%;
     transform: scale(1.4);
     border-radius: 0;
-
   }
 
   .ui.image.label .detail {
@@ -51,22 +61,22 @@
 
   .correctAnswer {
     // border: 5px solid #1ABC9C !important;
-    background-color: #1ABC9C !important;
+    background-color: #1abc9c !important;
   }
 
   .wrongAnswer {
     //  border: 5px solid #E74C3C !important;
-     background-color:#E74C3C !important;
+    background-color: #e74c3c !important;
   }
 
   .question {
-    margin        : auto;
-    width         : 90%;
-    min-height    : 200px;
-    background    : white;
-    padding       : 2%;
+    margin: auto;
+    width: 90%;
+    min-height: 200px;
+    background: white;
+    padding: 2%;
     padding-bottom: 5%;
-    font-size     : 16px;
+    font-size: 16px;
     border-radius: 5px;
   }
 
@@ -78,7 +88,7 @@
     }
 
     .candidate-card {
-     display: flex;
+      display: flex;
       flex-direction: row;
       align-items: center;
       width: 80%;
@@ -86,7 +96,7 @@
       margin: 5% auto 5% auto !important;
       border-radius: 5px;
 
-        .card-imgs {
+      .card-imgs {
         position: relative !important;
         padding: 5px;
         width: 75px;
@@ -98,31 +108,35 @@
         width: 50%;
         padding-top: 2.5rem;
       }
-      
+
       .follower-count {
-        margin:10%;
+        margin: 10%;
+      }
+
+      .follower-count {
+        margin: 10%;
       }
     }
   }
 
   .top-row {
-    min-width : 100%;
+    min-width: 100%;
     max-height: 40px;
-    overflow  : hidden;
+    overflow: hidden;
 
     .home-button {
-      display        : flex;
+      display: flex;
       justify-content: center;
-      width          : 25%;
-      max-height     : 50px;
-      font-size      : 15px;
+      width: 25%;
+      max-height: 50px;
+      font-size: 15px;
     }
 
     .hearts {
-      display        : flex;
+      display: flex;
       justify-content: center;
-      width          : 25%;
-      max-height     : 40px;
+      width: 25%;
+      max-height: 40px;
 
       .heart {
         max-width: 40px;
@@ -131,7 +145,7 @@
 
     .score-label {
       max-height: 40px;
-      font-size : 20px;
+      font-size: 20px;
 
       .score {
         margin: auto;
@@ -149,23 +163,23 @@
   width: 27rem;
   height: 14rem;
 
-  >.header:not(.ui) {
+  > .header:not(.ui) {
     font-size: 2rem;
     text-align: center;
     color: #00b5ad;
   }
-  
-  >:last-child {
+
+  > :last-child {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
 
   .ui.positive.button {
-    background-color:   #00b5ad;
+    background-color: #00b5ad;
   }
 
   .ui.negative.button {
-    background-color:  #E74C3C;
+    background-color: #e74c3c;
   }
 }

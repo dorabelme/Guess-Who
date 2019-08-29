@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 import Login from "./components/Login/Login";
@@ -8,8 +8,14 @@ import MainPage from "./components/DashBoard/Dashboard";
 import QuestionList from "./components/Question/QuestionList";
 import ProfileCard from "./components/Profile/ProfileCard";
 
-import { getTweets, postScore, setNewHighScore, getUser, login, signup } from './actions/index';
-
+import {
+  getTweets,
+  postScore,
+  setNewHighScore,
+  getUser,
+  login,
+  signup
+} from "./actions/index";
 
 import "./App.css";
 
@@ -28,13 +34,18 @@ const ProtectedProfileCard = protectRoute(ProfileCard);
 
 // App
 function App(props) {
-  
   const getLogin = values => {
-    props.login(values).then(res => { props.history.push("/guesswho"); return true })
+    props.login(values).then(res => {
+      props.history.push("/guesswho");
+      return true;
+    });
   };
 
   const getSignup = values => {
-    props.signup(values).then(res => { props.history.push("/guesswho"); return true })
+    props.signup(values).then(res => {
+      props.history.push("/guesswho");
+      return true;
+    });
   };
 
   // useEffect(() => {
@@ -49,7 +60,6 @@ function App(props) {
 
   console.log("the set data", props.username);
 
-  
   return (
     <div className="App">
       <Route
@@ -58,23 +68,24 @@ function App(props) {
         render={props => <Login {...props} getLogin={getLogin} />}
       />
 
-      <Route exact path="/register" render={props => <Register {...props} getSignup={getSignup} />} />
-
-      <Route path="/guesswho" render={props => (
-        <ProtectedMainPage {...props} />
-      )}
+      <Route
+        exact
+        path="/register"
+        render={props => <Register {...props} getSignup={getSignup} />}
       />
+
+      <Route
+        path="/guesswho"
+        render={props => <ProtectedMainPage {...props} />}
+      />
+
       <Route
         path="/questions"
-        render={props => (
-          <ProtectedQuestionList {...props} />
-        )}
+        render={props => <ProtectedQuestionList {...props} />}
       />
       <Route
         path="/profile"
-        render={props => (
-          <ProtectedProfileCard {...props} />
-        )}
+        render={props => <ProtectedProfileCard {...props} />}
       />
     </div>
   );
@@ -88,9 +99,9 @@ const mapStateToProps = state => {
     username: state.username,
     userId: state.userId,
     token: state.token,
-    personalHighScore: state.personalHighScore,
-  }
-}
+    personalHighScore: state.personalHighScore
+  };
+};
 
 export default connect(
   mapStateToProps,

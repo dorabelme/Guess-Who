@@ -6,64 +6,69 @@ import "semantic-ui-css/semantic.min.css";
 import "./dashboard.scss";
 import NavbarTwo from "../Navbar/Navbar2";
 import FriendCard from "./FriendCard";
-
+import { GET_USER_SUCCESS } from "../../actions";
 
 const MainPage = ({ history, userName, highScore }) => {
-  const [richards, setRichard] = useState(0)
-  const [dorab, setDorab] = useState(0)
-  const [deejay, setDeejay] = useState(0)
-  const [taran, setTaran] = useState(0)
+  const [richards, setRichard] = useState(0);
+  const [dorab, setDorab] = useState(0);
+  const [deejay, setDeejay] = useState(0);
+  const [taran, setTaran] = useState(0);
 
-  const scores = [richards, dorab, deejay, taran]
+  const scores = [richards, dorab, deejay, taran];
 
   const getHighScores1 = () => {
     axiosWithAuth()
-      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/5d65cf2bdc88360017ea1e1b`)
+      .get(
+        `https://lambda-guess-who.herokuapp.com/api/user/highscore/5d65cf2bdc88360017ea1e1b`
+      )
       .then(res => {
-        console.log(res.data)
-        setRichard(res.data)
+        console.log(res.data);
+        setRichard(res.data);
       })
       .catch(err => console.log(err.response));
   };
 
   const getHighScores2 = () => {
     axiosWithAuth()
-      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/5d66f018f66ac900174b2b2d`)
+      .get(
+        `https://lambda-guess-who.herokuapp.com/api/user/highscore/5d66f018f66ac900174b2b2d`
+      )
       .then(res => {
-        console.log(res.data)
-        setDorab(res.data)
+        console.log(res.data);
+        setDorab(res.data);
       })
       .catch(err => console.log(err.response));
   };
 
   const getHighScores3 = () => {
     axiosWithAuth()
-      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/5d6414d32c7f870017924f82`)
+      .get(
+        `https://lambda-guess-who.herokuapp.com/api/user/highscore/5d6414d32c7f870017924f82`
+      )
       .then(res => {
-        console.log(res.data)
-        setDeejay(res.data)
+        console.log(res.data);
+        setDeejay(res.data);
       })
       .catch(err => console.log(err.response));
   };
 
   const getHighScores4 = () => {
     axiosWithAuth()
-      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/5d643bea4ec62500173c50cd`)
+      .get(
+        `https://lambda-guess-who.herokuapp.com/api/user/highscore/5d643bea4ec62500173c50cd`
+      )
       .then(res => {
-        
-        setTaran(res.data)
+        setTaran(res.data);
       })
       .catch(err => console.log(err.response));
   };
 
   useEffect(() => {
-    getHighScores1()
-    getHighScores2()
-    getHighScores3()
-    getHighScores4()
-
+    getHighScores1();
+    getHighScores2();
+    getHighScores3();
+    getHighScores4();
   }, []);
-
 
   const handleSubmit = () => {
     const url = "https://lambda-guess-who.herokuapp.com/amIAuthed";
@@ -103,7 +108,7 @@ const MainPage = ({ history, userName, highScore }) => {
       id: "5d643bea4ec62500173c50cd",
       imgSrc: "./taran.png",
       highscore: taran
-    },
+    }
   ];
   return (
     <Card className="dashboard-card">
