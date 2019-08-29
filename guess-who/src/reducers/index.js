@@ -1,41 +1,40 @@
 import {
-    SIGNUP_START,
-    SIGNUP_SUCCESS,
-    SIGNUP_FAILURE,
-    LOGIN_START,
-    LOGIN_SUCCESS,
-    LOGIN_FAILURE,
-    GET_TWEETS_START,
-    GET_TWEETS_SUCCESS,
-    GET_TWEETS_FAILURE,
-    HIGHEST_SCORE,
-    USER_ID,
-    POST_SCORE_START,
-    POST_SCORE_SUCCESS,
-    POST_SCORE_FAILURE,
-    RESTART_GAME,
-    CORRECT_GUESS,
-    INCORRECT_GUESS
-} from '../actions';
+  SIGNUP_START,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  GET_TWEETS_START,
+  GET_TWEETS_SUCCESS,
+  GET_TWEETS_FAILURE,
+  HIGHEST_SCORE,
+  USER_ID,
+  POST_SCORE_START,
+  POST_SCORE_SUCCESS,
+  POST_SCORE_FAILURE,
+  RESTART_GAME,
+  CORRECT_GUESS,
+  INCORRECT_GUESS
+} from "../actions";
 
 export const initialState = {
-    username: '',
-    token: '',
-    userId: '',
-    tweet: '',
-    tweeters: [],
-    answer: {},
-    signUp: false,
-    loggingIn: false,
-    gettingTwitter: false,
-    postingScore: false,
-    error: '',
-    highScore: 0,
-    personalHighScore: 0,
-    lives: 3,
-    numberOfGuesses: 0
+  username: "",
+  token: "",
+  userId: "",
+  tweet: "",
+  tweeters: [],
+  answer: {},
+  signUp: false,
+  loggingIn: false,
+  gettingTwitter: false,
+  postingScore: false,
+  error: "",
+  highScore: 0,
+  personalHighScore: 0,
+  lives: 3,
+  numberOfGuesses: 0
 };
-
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
