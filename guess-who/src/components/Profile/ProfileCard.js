@@ -11,7 +11,7 @@ import "./Profile.scss";
 
 //Dummy Data before state is able to be passed from login
 const profile = {
-	avatar: "https://react.semantic-ui.com/images/avatar/large/elliot.jpg",
+	avatar: "https://avatars2.githubusercontent.com/u/48419097?s=460&v=4",
 	header: "My Profile: ",
 	description:
 		'I want to tweet the very best. '
