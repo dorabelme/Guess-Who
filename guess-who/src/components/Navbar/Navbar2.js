@@ -6,7 +6,7 @@ import "./navbar.scss";
 import "./navbarTwo.scss";
 import { Accordion, Icon } from "semantic-ui-react";
 
-function NavbarMain(props) {
+function NavbarTwo(props) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const [openModal, setOpen] = useState(false);
@@ -69,4 +69,4 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     {}
-)(NavbarMain);
+)(NavbarTwo);
