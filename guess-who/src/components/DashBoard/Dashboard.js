@@ -3,7 +3,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Card, Image, Label, Button, Table } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import "./dashboard.scss";
+import "./Dashboard.scss";
 import NavbarMain from "../Navbar/Navbar2";
 import FriendCard from "./FriendCard";
 import { GET_USER_SUCCESS } from "../../actions";

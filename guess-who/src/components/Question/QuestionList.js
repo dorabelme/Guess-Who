@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Card, Button, Label, Image, Modal } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import "./question.scss";
+import "./Question.scss";
 import "../../assets/animate.css";
 import QuestionCard from "./QuestionCard";
 import NavbarThree from "../Navbar/Navbar3";
