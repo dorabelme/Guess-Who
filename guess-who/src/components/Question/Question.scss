@@ -88,18 +88,23 @@
     .candidate-card {
       display: flex;
       flex-direction: row;
+      align-items: center;
       width: 80%;
       height: 100px;
       margin: 5% auto 5% auto !important;
-      border-radius: 0;
+      border-radius: 5px;
 
       .card-imgs {
-        width: 100px;
-        height: 100px;
+        position: relative !important;
+        padding: 5px;
+        width: 75px;
+        height: 75px;
+        border-radius: 50px !important;
       }
 
       .card-content {
         width: 50%;
+        padding-top: 2.5rem;
 
         .correct {
           background-color: green;

@@ -107,7 +107,11 @@ function App(props) {
       <Route
         path="/guesswho"
         render={props => (
-          <ProtectedGuessWhoPage {...props} username={state.username} />
+          <ProtectedGuessWhoPage
+            {...props}
+            username={state.username}
+            highScore={state.highScore}
+          />
         )}
       />
       <Route

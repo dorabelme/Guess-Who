@@ -1,79 +1,79 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 
- 
- .leftNavbar {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    
-  }
+.leftNavbar {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
 
 .sideNavBar {
-    width: 150px;
-    height: 100px;
-    display: inline-block;
-    text-align: left;
-    margin-top: 50px;
+  width: 150px;
+  height: 100px;
+  display: inline-block;
+  text-align: left;
+  margin-top: 50px;
 
-    .ui.accordion {
-        text-align: center;
-        color: #173630;
-        font-family: 'Lato', sans-serif;
-        // font-family: "Rubik", sans-serif;
-        width: 264px;
-        height: 936px;
-        margin: 0;
-    };
-    
-    .ui.accordion .title:not(.ui) {
-        color: #1A2F77;
-        font-family: Lato;
-        // font-family: "Rubik", sans-serif;
-        font-size: 16px;
-        font-weight: 900;
-        letter-spacing: 4.57px;	
-        line-height: 19px;	
-        text-align: center;
-        padding-left: 5rem;
-    };
-    
-    .sideNavButtons {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-left: 20px;
-        padding-top: 10px;
-    };
-    
-    .NavIcon {
-          height: 24px;
-          width: 24px;
-          border-radius: 8.5px;
-          background-color: #BBE5B3;
-          margin-right: 20px;
-    }
-    
-    .ui.accordion:not(.styled) .title~.content:not(.ui).active.profileCard {
-        height: 150px;
-        width: 131px;
-        border: 1px solid #979797;	
-        background-color: #FFFFFF;
-        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        z-index: 1;
-    }
-    
-    a, .editProfileBtn {
-        height: 20px;
-        width: 79px;	
-        color: #233A6D;	
-        font-family: Lato;
-        // font-family: "Rubik", sans-serif;
-        font-size: 16px;
-        line-height: 20px;
-    }
+  .ui.accordion {
+    text-align: center;
+    color: #173630;
+    font-family: "Lato", sans-serif;
+    // font-family: "Rubik", sans-serif;
+    width: 264px;
+    height: 936px;
+    margin: 0;
+  }
+
+  .ui.accordion .title:not(.ui) {
+    display: flex;
+    color: #1a2f77;
+    font-family: Lato;
+    // font-family: "Rubik", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px !important;
+    line-height: 19px;
+    text-align: center;
+    padding: 0.8rem 0 !important;
+  }
+
+  .sideNavButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    padding-top: 10px;
+  }
+
+  .NavIcon {
+    height: 24px;
+    width: 24px;
+    border-radius: 8.5px;
+    background-color: #bbe5b3;
+    margin-right: 20px;
+  }
+
+  .ui.accordion:not(.styled) .title ~ .content:not(.ui).active.profileCard {
+    height: 150px;
+    width: 131px;
+    border: 1px solid #979797;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 1;
+  }
+
+  a,
+  .editProfileBtn {
+    height: 20px;
+    width: 79px;
+    color: #233a6d;
+    font-family: Lato;
+    // font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+  }
 }

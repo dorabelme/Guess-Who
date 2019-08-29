@@ -22,7 +22,7 @@ const QuestionList = ({ username, highScore, setState, state }) => {
   const close = () => setOpenState({ open: false });
 
   function delay(f) {
-    setTimeout(f, 2000);
+    setTimeout(f, 1000);
   }
 
   function reset() {
@@ -127,7 +127,7 @@ const QuestionList = ({ username, highScore, setState, state }) => {
           <Label color="teal" image>
             {/* <img src="./birdLogo.jpeg" /> */}
             {username}
-            <Label.Detail>Personal Highest Score: {personalScore}</Label.Detail>
+            <Label.Detail>High Score: {personalScore}</Label.Detail>
           </Label>
         </div>
       </div>
