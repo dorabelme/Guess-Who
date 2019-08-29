@@ -1,40 +1,53 @@
-.upperNav {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-evenly;
-  margin-top: 2rem;
+.dashboard-card {
+  display       : flex;
+flex-direction: column;
+min-width     : 100%;
+background-image: linear-gradient(135deg,
+    rgba(31, 4, 184, 0.8) 0%,
+    rgba(14, 171, 199, 0.8) 100%) !important;
 
-  .ui.card {
-    height: 8rem;
-    width: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.upperNav {
+  display        : flex;
+  flex-direction : row;
+  width          : 100%;
+  justify-content: space-evenly;
+  margin-top     : 2rem;
+
+  .profile-pin {
+    margin-bottom: 10%;
   }
 
-  .ui.card > .image {
+  .ui.card {
+    height         : 8rem;
+    width          : 10rem;
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items    : center;
+  }
+
+  .ui.card>.image {
     width: 6rem;
   }
 
-  .ui.card > .content > .header {
+  .ui.card>.content>.header {
     color: #173ad4;
   }
 
   .btn {
-    font-size: 2rem;
-    width: 14rem;
-    height: 8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 0.5rem 1.8rem;
-    transition: all 0.3s ease;
+    font-size       : 2rem;
+    width           : 14rem;
+    height          : 8rem;
+    font-weight     : 600;
+    text-transform  : uppercase;
+    padding         : 0.5rem 1.8rem;
+    transition      : all 0.3s ease;
     background-image: none;
-    margin-bottom: 2.5rem;
-    font-family: "Rubik", sans-serif;
-    color: #173ad4;
+    margin-bottom   : 2.5rem;
+    font-family     : "Rubik", sans-serif;
+    color           : #173ad4;
     background-color: white;
-    border-color: #173ad4;
+    border-color    : #173ad4;
   }
+}
 }

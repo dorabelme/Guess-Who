@@ -161,4 +161,3 @@ const QuestionList = ({ username, highScore, setState, state }) => {
   );
 };
 export default QuestionList;
-

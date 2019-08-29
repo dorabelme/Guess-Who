@@ -91,5 +91,7 @@ export default function ProfileCard({ username, highScore }) {
 				</Card>
 			</div>
 		</>
+
+
 	);
 }
