@@ -21,16 +21,17 @@
     width: 40%;
     padding: 1.5rem;
     font-size: 1.5rem;
-    background: linear-gradient(109deg, #4b44c8, #429ed0) !important;
+    border: 1px solid white !important;
+    transition: all 0.5s ease !important;
+    background: linear-gradient(109deg, #429ed0, #4b44c8) !important;
     background-size: 200% 200% !important;
-
     &:hover {
-      background: linear-gradient(109deg, #4b44c8, #429ed0) !important;
+      background: linear-gradient(109deg, #429ed0, #4b44c8) !important;
       background-size: 200% 200% !important;
 
-      -webkit-animation: AnimationName 5s ease infinite !important;
-      -moz-animation: AnimationName 5s ease infinite !important;
-      animation: AnimationName 5s ease infinite !important;
+      -webkit-animation: AnimationName 6s ease infinite !important;
+      -moz-animation: AnimationName 6s ease infinite !important;
+      animation: AnimationName 6s ease infinite !important;
 
       @-webkit-keyframes AnimationName {
         0% {
@@ -140,9 +141,7 @@
       background-image: none;
       margin-bottom: 2.5rem;
       font-family: "Rubik", sans-serif;
-      color: #173ad4;
       background-color: white;
-      border-color: #173ad4;
     }
   }
 }
