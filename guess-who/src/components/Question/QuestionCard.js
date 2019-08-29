@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Image, Icon } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import "./question.scss";
+import "./Question.scss";
 
 const QuestionCard = props => {
 
