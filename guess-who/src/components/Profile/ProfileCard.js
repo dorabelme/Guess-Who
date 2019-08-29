@@ -1,5 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+
 import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./Profile.scss";
@@ -8,8 +9,7 @@ import ProgressBar from "./ProgressBar";
 
 //Dummy Data before state is able to be passed from login
 const profile = {
-	avatar:
-		"https://www.m2.com.lb/modules//smartblog/images/139.jpg",
+	avatar: "https://www.m2.com.lb/modules//smartblog/images/139.jpg",
 	header: "My Profile: ",
 	description: "I want to tweet the very best. "
 };
@@ -51,13 +51,11 @@ const mapStateToProps = state => {
 		username: state.username,
 		userId: state.userId,
 		token: state.token,
-		personalHighScore: state.personalHighScore,
-	}
-}
+		personalHighScore: state.personalHighScore
+	};
+};
 
 export default connect(
 	mapStateToProps,
 	{}
 )(ProfileCard);
-
-
