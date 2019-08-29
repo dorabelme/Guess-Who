@@ -11,7 +11,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 const profile = {
   avatar: "https://www.m2.com.lb/modules//smartblog/images/139.jpg",
   header: "My Profile: ",
-  description: "I want to tweet the very best. "
+  description: "I am a Twitter enthusiast. "
 };
 function ProfileCard(props) {
   // const [avatar, getAvatar] = useState({})
