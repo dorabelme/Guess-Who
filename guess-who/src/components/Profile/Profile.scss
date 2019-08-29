@@ -1,38 +1,53 @@
+* {
+  box-sizing: border-box;
+}
 
- * {box-sizing:border-box}
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
 
+  img {
+    align-content: center;
+    width: 100%;
+  }
 
-	.profile-card {
-	  display: flex;
-	  flex-direction:column;
-	  width: 100%;
-	  justify-content: space-between;
-	  align-items: center;
-
-	  img{
-
-		align-content: center;
-		width:100%;
-	  }
-	
   .userName {
-	  color: rgba(0,0,0,.7);
-	  text-shadow: 1px 1px black;
+    color: rgba(0, 0, 0, 0.7);
+    text-shadow: 1px 1px black;
   }
-	
+
   .container {
-	width: 100%; /* Full width */
-	background-color: #ddd; /* Grey background */
+    width: 100%; /* Full width */
+    background-color: #ddd; /* Grey background */
   }
 
-  .skills {
-	text-align: right; /* Right-align text */
-	padding-top: 10px; /* Add top padding */
-	padding-bottom: 10px; /* Add bottom padding */
-	color: white; /* White text color */
-  }
-  .scores {width: 30% ; background-color: #4CAF50;} /* Green */
-
+  .progress-bar {
+    position: relative;
+    height: 20px;
+    width: 100%;
+    border-radius: 50px;
+    border: 1px solid #333;
   }
 
+  .filler {
+    background: #4caf50;
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.2s ease-in;
+  }
 
+  //   .skills {
+  //     text-align: right; /* Right-align text */
+  //     padding-top: 10px; /* Add top padding */
+  //     padding-bottom: 10px; /* Add bottom padding */
+  //     color: white; /* White text color */
+  //   }
+  //   .scores {
+  //     width: 30%;
+  //     background-color: #4caf50;
+  //   } /* Green */
+}

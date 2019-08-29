@@ -12,13 +12,15 @@
     width  : 90%;
   }
 
-  .ui.red.label {
+  .ui.yellow.label {
     height: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     font-size: 1.4rem;
+    margin: 0;
+    border-radius: 0;
   }
 
   .opponents-div-1 {
@@ -38,14 +40,9 @@
   }
 
   .opponents-div-1 .label {
-    // margin   : 5%;
-    // left     : 10%;
     transform: scale(1.4);
-  }
+    border-radius: 0;
 
-  .opponents-div-2 .label {
-    margin   : 5%;
-    transform: scale(1.4);
   }
 
   .ui.image.label .detail {
@@ -53,11 +50,13 @@
   }
 
   .correctAnswer {
-    border: 5px solid #1ABC9C !important;
+    // border: 5px solid #1ABC9C !important;
+    background-color: #1ABC9C !important;
   }
 
   .wrongAnswer {
-     border: 5px solid #E74C3C !important;
+    //  border: 5px solid #E74C3C !important;
+     background-color:#E74C3C !important;
   }
 
   .question {
@@ -65,10 +64,10 @@
     width         : 90%;
     min-height    : 200px;
     background    : white;
-    border-radius : 10px;
     padding       : 2%;
     padding-bottom: 5%;
     font-size     : 16px;
+    border-radius: 5px;
   }
 
   .candidate-card-div {
@@ -79,19 +78,25 @@
     }
 
     .candidate-card {
-      display       : flex;
+     display: flex;
       flex-direction: row;
-      width         : 80%;
-      height        : 100px;
-      margin        : 5% auto 5% auto !important;
+      align-items: center;
+      width: 80%;
+      height: 100px;
+      margin: 5% auto 5% auto !important;
+      border-radius: 5px;
 
-      .card-imgs {
-        width : 100px;
-        height: 100px;
+        .card-imgs {
+        position: relative !important;
+        padding: 5px;
+        width: 75px;
+        height: 75px;
+        border-radius: 50px !important;
       }
 
       .card-content {
         width: 50%;
+        padding-top: 2.5rem;
       }
       
       .follower-count {

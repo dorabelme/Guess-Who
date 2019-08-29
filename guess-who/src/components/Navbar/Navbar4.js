@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import "./navbar.scss";
 import "./navbarTwo.scss";
-import { Accordion, Icon } from "semantic-ui-react";
+import "./navbarFour.scss";
+import { Accordion, Icon } from 'semantic-ui-react';
 
-function NavbarMain(props) {
+
+function NavbarFour(props) {
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const [openModal, setOpen] = useState(false);
+    const [openModal, setOpen] = useState(false)
     const show = () => setOpen(true);
     const close = () => setOpen(false);
 
@@ -18,17 +19,17 @@ function NavbarMain(props) {
         const newIndex = activeIndex === index ? -1 : index;
         setActiveIndex(newIndex);
         setOpen(!openModal);
-    };
+    }
 
     const signOut = () => {
-        localStorage.removeItem("token");
-    };
+        localStorage.removeItem('token')
+    }
 
     return (
         <div className="navbar">
             <div className="leftNavbar">
                 <img src="./birdLogo.jpeg" alt="logo" />
-                <h1>Guess Who?</h1>
+                <Link to="/guesswho"><h1>Home</h1></Link>
             </div>
             <div className="sideNavBar">
                 {/* <NavBar /> */}
@@ -50,9 +51,11 @@ function NavbarMain(props) {
                     </div>
                 </Accordion>
             </div>
+
         </div>
-    );
+    )
 }
+
 const mapStateToProps = state => {
     return {
         tweet: state.tweet,
@@ -68,4 +71,5 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     {}
-)(NavbarMain);
+)(NavbarFour);
+
