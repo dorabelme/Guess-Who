@@ -87,7 +87,7 @@ const QuestionList = (props) => {
         <div className="opponents-div-1">
           <Label color="teal" image>
           {/* <img src="./birdLogo.jpeg" /> */}
-          {props.username}
+          {/* {props.username} */}
             <Label.Detail>Personal Highest Score: {props.personalHighScore}</Label.Detail>
         </Label>
         </div>

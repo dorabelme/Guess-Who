@@ -36,7 +36,8 @@ function NavbarMain(props) {
                     <div className="sideNavButtons">
                         <Accordion.Title active={openModal} index={0} onClick={handleClick}>
                             <Icon name="dropdown" size="big" />
-                            {props.username}
+                            {/* {props.username} */}
+                            {localStorage.getItem("username")}
                         </Accordion.Title>
                         <Accordion.Content active={openModal} className="profileCard">
                             <div>{console.log("this is user", props.username)}</div>

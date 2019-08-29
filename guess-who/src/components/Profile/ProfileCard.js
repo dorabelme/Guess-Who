@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { connect } from 'react-redux';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 import { Card, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./profile.scss";
 import NavbarFour from "../Navbar/Navbar4";
 import ProgressBar from "./ProgressBar";
+
+import { getPersonalHighScore } from '../../actions/index';
 
 //Dummy Data before state is able to be passed from login
 const profile = {
@@ -15,9 +18,17 @@ const profile = {
 	description: "I want to tweet the very best. "
 };
 function ProfileCard(props) {
-	// const [avatar, getAvatar] = useState({})
+	const [personalHigh, setPersonalHigh] = useState()
+	const userId = localStorage.getItem('userId')
 
-	const newScores = props.personalHighScore;
+	useEffect(() => {
+		axiosWithAuth()
+			.get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${userId}`)
+			.then(res => { setPersonalHigh(res.data) })
+			.catch(err => console.log(err.response));
+	}, []);
+
+	const newScores = personalHigh;
 
 	return (
 		<>
@@ -58,7 +69,7 @@ const mapStateToProps = state => {
 
 export default connect(
 	mapStateToProps,
-	{}
+	{ getPersonalHighScore}
 )(ProfileCard);
 
 
