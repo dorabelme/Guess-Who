@@ -32,7 +32,9 @@ function Register({ touched, errors }) {
           />
           <p>{touched.password && errors.password}</p>
         </div>
-       <button type="submit" className="btn"> Register
+        <button type="submit" className="btn">
+          {" "}
+          Register
         </button>
       </Form>
       <div className="login-redirect">
@@ -51,14 +53,14 @@ export default withFormik({
   mapPropsToValues() {
     return {
       username: "",
-      password: "",
+      password: ""
     };
   },
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Username is required"),
     password: Yup.string()
       .min(6)
-      .required("Password is required"),
+      .required("Password is required")
   }),
   handleSubmit(values, formikBag) {
     formikBag.props.getSignup(values);

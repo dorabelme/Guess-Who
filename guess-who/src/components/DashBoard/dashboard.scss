@@ -21,8 +21,52 @@
     width: 40%;
     padding: 1.5rem;
     font-size: 1.5rem;
-  }
+    background: linear-gradient(109deg, #4b44c8, #429ed0) !important;
+    background-size: 200% 200% !important;
 
+    &:hover {
+      background: linear-gradient(109deg, #4b44c8, #429ed0) !important;
+      background-size: 200% 200% !important;
+
+      -webkit-animation: AnimationName 2s ease infinite !important;
+      -moz-animation: AnimationName 2s ease infinite !important;
+      animation: AnimationName 2s ease infinite !important;
+
+      @-webkit-keyframes AnimationName {
+        0% {
+          background-position: 0% 65%;
+        }
+        50% {
+          background-position: 100% 36%;
+        }
+        100% {
+          background-position: 0% 65%;
+        }
+      }
+      @-moz-keyframes AnimationName {
+        0% {
+          background-position: 0% 65%;
+        }
+        50% {
+          background-position: 100% 36%;
+        }
+        100% {
+          background-position: 0% 65%;
+        }
+      }
+      @keyframes AnimationName {
+        0% {
+          background-position: 0% 65%;
+        }
+        50% {
+          background-position: 100% 36%;
+        }
+        100% {
+          background-position: 0% 65%;
+        }
+      }
+    }
+  }
   .header {
     color: white;
     font-size: 1.5rem;
@@ -62,7 +106,7 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-evenly;
-    margin-top: 2rem;
+    margin-top: 4rem;
 
     .profile-pin {
       margin-bottom: 10%;

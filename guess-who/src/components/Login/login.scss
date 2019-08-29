@@ -1,11 +1,52 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 
 .loginPage {
   width: 100%;
+  padding-bottom: 130px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  background: linear-gradient(109deg, #4b44c8, #429ed0) !important;
+  background-size: 800% 800% !important;
+
+  -webkit-animation: BackgroundAnimation 4s ease infinite !important;
+  -moz-animation: BackgroundAnimation 4s ease infinite !important;
+  animation: BackgroundAnimation 4s ease infinite !important;
+
+  @-webkit-keyframes BackgroundAnimation {
+    0% {
+      background-position: 0% 65%;
+    }
+    50% {
+      background-position: 100% 36%;
+    }
+    100% {
+      background-position: 0% 65%;
+    }
+  }
+  @-moz-keyframes BackgroundAnimation {
+    0% {
+      background-position: 0% 65%;
+    }
+    50% {
+      background-position: 100% 36%;
+    }
+    100% {
+      background-position: 0% 65%;
+    }
+  }
+  @keyframes BackgroundAnimation {
+    0% {
+      background-position: 0% 65%;
+    }
+    50% {
+      background-position: 100% 36%;
+    }
+    100% {
+      background-position: 0% 65%;
+    }
+  }
 
   .form {
     width: 100%;

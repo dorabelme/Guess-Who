@@ -48,7 +48,10 @@ function ProfileCard(props) {
               <div className="skills scores" />
             </div>
             <h3>{10 - score} points till the next level</h3>
-            <h2>{score} Tweety Points</h2>
+            <h2>
+              {isNaN(score) ? setScore(0) : score + " "}
+              Tweety Points
+            </h2>
             <h3>Bio: {profile.description}</h3>
             {/*profile.settings*/}
           </Card.Content>
