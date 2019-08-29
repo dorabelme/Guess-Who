@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 import "./navbar.scss";
 import "./navbarTwo.scss";
 import { Accordion, Icon } from "semantic-ui-react";
 
-function NavbarMain({ userName }) {
+function NavbarMain(props) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [openModal, setOpen] = useState(false);
@@ -20,6 +22,7 @@ function NavbarMain({ userName }) {
 
   const signOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
   };
 
   return (
@@ -28,17 +31,18 @@ function NavbarMain({ userName }) {
         <img src="./birdLogo.jpeg" alt="logo" />
         <h1>Guess Who?</h1>
       </div>
-      {/* <img src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/29-512.png" alt="hamburger menu"  /> */}
       <div className="sideNavBar">
         {/* <NavBar /> */}
         <Accordion>
           <div className="sideNavButtons">
             <Accordion.Title active={openModal} index={0} onClick={handleClick}>
               <Icon name="dropdown" size="big" />
-              {userName}
+              {localStorage.getItem("username")}
             </Accordion.Title>
             <Accordion.Content active={openModal} className="profileCard">
-              <div>{console.log("this is user", userName)}</div>
+              <div>
+                {console.log("this is user", localStorage.getItem("username"))}
+              </div>
               <Link to="/profile">
                 <div className="editProfileBtn" onClick={show}>
                   Profile
@@ -52,5 +56,18 @@ function NavbarMain({ userName }) {
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+    tweet: state.tweet,
+    tweeters: state.tweeters,
+    highScore: state.highScore,
+    userId: state.userId,
+    token: state.token,
+    personalHighScore: state.personalHighScore
+  };
+};
 
-export default NavbarMain;
+export default connect(
+  mapStateToProps,
+  {}
+)(NavbarMain);

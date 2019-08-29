@@ -77,7 +77,7 @@ export const login = user => dispatch => {
       let usernameData = JSON.parse(res.config.data).username;
       let tokenData = parseJwt(res.data.token);
       console.log(tokenData);
-      localStorage.setItem("username", user.username);
+      localStorage.setItem("username", usernameData);
       localStorage.setItem("userId", tokenData.user.id);
       dispatch({
         type: LOGIN_SUCCESS,
