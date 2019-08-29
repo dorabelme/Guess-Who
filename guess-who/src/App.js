@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
 import { Route, Redirect } from "react-router-dom";
 import { axiosWithAuth } from "./utils/axiosWithAuth";
 
@@ -7,6 +8,9 @@ import Register from "./components/Login/Register";
 import GuessWhoPage from "./components/DashBoard/Dashboard";
 import QuestionList from "./components/Question/QuestionList";
 import ProfileCard from "./components/Profile/ProfileCard";
+
+import { getTweets, postScore, setNewHighScore, getUser, login, signup } from './actions/index';
+
 
 import "./App.css";
 
@@ -39,57 +43,29 @@ const initialState = {
   lives: 3
 };
 
-// function to parse token and get id
-function parseJwt(token) {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
-
-  return JSON.parse(jsonPayload);
-};
-
-
 // App
 function App(props) {
-  const [state, setState] = useState(initialState);
-
+  
   const getLogin = values => {
-    const url = "https://lambda-guess-who.herokuapp.com/api/auth/login";
-    axiosWithAuth()
-      .post(url, values)
-      .then(res => {
-        console.log("data from login:", res.config);
-        localStorage.setItem("token", res.data.token);
-        console.log("username", JSON.parse(res.config.data).username);
-        let usernameData = JSON.parse(res.config.data).username;
-        let tokenData = parseJwt(res.data.token);
-        setState({ ...initialState, username: usernameData, userId: tokenData.user.id });     
-        console.log(tokenData.user.id);
-        props.history.push("/guesswho");
-      })
-      .catch(e => {
-        console.log(e.response);
-      });
+    props.login(values).then(res => { props.history.push("/guesswho"); return true })
   };
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`)
-      .then(res => {
-        setState(setState({ ...initialState, highScore: res.data })
-        )
-      })
-      .catch(err => console.log(err.response));
-  }, []);
 
-  console.log("the set data", state.username);
-  console.log("this is the state", state);
+  const getSignup = values => {
+    props.signup(values).then(res => { props.history.push("/guesswho"); return true })
+  };
+
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get(`https://lambda-guess-who.herokuapp.com/api/user/highscore/${state.userId}`)
+  //     .then(res => {
+  //       setState(setState({ ...initialState, highScore: res.data })
+  //       )
+  //     })
+  //     .catch(err => console.log(err.response));
+  // }, []);
+
+  // console.log("the set data", state.username);
+  // console.log("this is the state", state);
 
   return (
     <div className="App">
@@ -98,27 +74,42 @@ function App(props) {
         path="/"
         render={props => <Login {...props} getLogin={getLogin} />}
       />
-      <Route exact path="/register" component={Register} />
 
-      
+      <Route exact path="/register" render={props => <Register {...props} getSignup={getSignup} />} />
+
       <Route path="/guesswho" render={props => (
-        <ProtectedGuessWhoPage {...props} username={state.username} />
+        <ProtectedGuessWhoPage {...props} username={props.username} />
       )}
       />
       <Route
         path="/questions"
         render={props => (
-          <ProtectedQuestionList {...props} highScore={state.highScore} setState={setState} state={state} />
+          <ProtectedQuestionList {...props} />
         )}
       />
       <Route
         path="/profile"
         render={props => (
-          <ProtectedProfileCard {...props} username={state.username} highScore={state.highScore} />
+          <ProtectedProfileCard {...props} username={props.username} highScore={props.highScore} />
         )}
       />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    ...state,
+    tweet: state.tweet,
+    tweeters: state.tweeters,
+    highScore: state.highScore,
+    username: state.username,
+    userId: state.userId,
+    token: state.token
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { getTweets, postScore, setNewHighScore, getUser, login, signup }
+)(App);
