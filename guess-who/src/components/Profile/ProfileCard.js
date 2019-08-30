@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import { Card, Image } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
 import "./profile.scss";
 import NavbarFour from "../Navbar/Navbar4";
 import ProgressBar from "./ProgressBar";

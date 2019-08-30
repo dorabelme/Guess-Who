@@ -1,25 +1,23 @@
 .navbar {
   width: 100%;
   background-color: white;
-  height: 6rem;
+  height: 6.5rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.5rem;
 
   img {
     padding-left: 2rem;
-    width: 4.5rem;
+    width: 5rem;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 600;
     color: #173ad4;
     letter-spacing: -1px;
-    margin-bottom: 1rem;
     padding-left: 0.5rem;
-    margin-top: 1rem;
   }
 }

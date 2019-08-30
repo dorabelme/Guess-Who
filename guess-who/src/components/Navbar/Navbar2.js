@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./navbar.scss";
+// import "./navbar.scss";
 import "./navbarTwo.scss";
 import { Accordion, Icon } from "semantic-ui-react";
 

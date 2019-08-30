@@ -4,8 +4,14 @@
 .leftNavbar {
   display: flex;
   flex-direction: row;
+  align-items: baseline;
   width: 80%;
+
+  h1 {
+    margin-top: 2rem !important;
+  }
 }
+
 
 .sideNavBar {
   width: 150px;

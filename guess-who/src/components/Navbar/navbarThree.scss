@@ -10,9 +10,25 @@
   .leftNavbar {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     justify-content: flex-start;
     width: 30%;
+
+    img {
+      padding-left: 1rem;
+      margin-left: 1rem;
+      width: 4rem;
+
+    }
+
+    .home-button {
+      font-size: 2.3rem;
+      font-weight: 600;
+      color: #173ad4;
+      letter-spacing: -1px;
+      padding-left: 0.5rem;
+      white-space: nowrap;
+    }
   }
 
   .rightNavbar {
@@ -21,24 +37,12 @@
     justify-content: flex-end;
     margin-top: 3.5%;
     min-width: 10rem;
+    padding-right: 1rem;
   }
 
   img {
     padding-left: 1rem;
+    margin-left: 1rem;
     width: 4.5rem;
-  }
-
-  img.heart {
-    padding: 1rem;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #173ad4;
-    letter-spacing: -1px;
-    padding-left: 0.5rem;
-    margin-top: 1rem;
-    white-space: nowrap;
   }
 }
