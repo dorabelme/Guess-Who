@@ -32,8 +32,9 @@ export const initialState = {
   error: "",
   highScore: 0,
   personalHighScore: 0,
-  lives: 3,
-  numberOfGuesses: 0
+    lives: 3,
+    numberOfGuesses: 0,
+  failedToFetchTweets: true
 };
 
 export const reducer = (state = initialState, action) => {
@@ -98,13 +99,15 @@ export const reducer = (state = initialState, action) => {
                 error: '',
                 tweet: action.payload.question,
                 tweeters: action.payload.candidates,
-                answer: action.payload.answer
+                answer: action.payload.answer,
+                failedToFetchTweets: false
             }
         case GET_TWEETS_FAILURE:
             return {
                 ...state,
                 gettingTwitter: false,
-                error: action.payload
+                error: action.payload,
+                failedToFetchTweets: true
             }
         case HIGHEST_SCORE:
             return {

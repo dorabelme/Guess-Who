@@ -76,9 +76,11 @@ const QuestionList = props => {
   };
 
   useEffect(() => {
-    props.getTweets();
-    getHighScores();
-  }, []);
+    if (props.failedToFetchTweets) {
+      props.getTweets();
+      getHighScores();
+    }
+  }, [props.failedToFetchTweets]);
 
   return (
     <Card className="question-list-card">
