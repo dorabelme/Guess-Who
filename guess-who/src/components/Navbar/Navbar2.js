@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./navbar.scss";
+// import "./navbar.scss";
 import "./navbarTwo.scss";
 import { Accordion, Icon } from "semantic-ui-react";
 
-function NavbarMain(props) {
-  const [activeIndex, setActiveIndex] = useState(0);
+function NavbarTwo(props) {
+    const [activeIndex, setActiveIndex] = useState(0);
 
   const [openModal, setOpen] = useState(false);
   const show = () => setOpen(true);
@@ -68,6 +68,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-  mapStateToProps,
-  {}
-)(NavbarMain);
+    mapStateToProps,
+    {}
+)(NavbarTwo);

@@ -2,7 +2,7 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+
 import "./login.scss";
 
 import Navbar from "../Navbar/Navbar";

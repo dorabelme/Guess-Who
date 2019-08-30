@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navbarThree.scss";
-import { Card, Button, Label, Image } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
 
 function NavbarThree({ highScore, lives }) {
   return (
     <div className="navbarAll">
       <div className="leftNavbar">
         <img src="./birdLogo.jpeg" alt="logo" />
-        <Link to="guesswho">
-          <h1 className="home-button">Home</h1>
+        <Link to="guesswho" className="home-button">
+          Home
         </Link>
       </div>
       <div>{/* <h1 className="score">Score: {highScore}</h1> */}</div>

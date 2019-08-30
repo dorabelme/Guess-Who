@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import { Card, Image } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
-import "./Profile.scss";
+import "./profile.scss";
 import NavbarFour from "../Navbar/Navbar4";
 import ProgressBar from "./ProgressBar";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
@@ -11,7 +10,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 const profile = {
 	avatar: "https://www.m2.com.lb/modules//smartblog/images/139.jpg",
 	header: "My Profile: ",
-	description: "I want to tweet the very best. "
+	description: "I am a Twitter enthusiast. "
 };
 function ProfileCard(props) {
 	// const [avatar, getAvatar] = useState({})
@@ -19,10 +18,11 @@ function ProfileCard(props) {
 
 	//   const newScores = props.personalHighScore;
 	const [score, setScore] = useState();
+	const userId = localStorage.getItem('userId')
 	useEffect(() => {
 		axiosWithAuth()
 			.get(
-				`https://lambda-guess-who.herokuapp.com/api/user/highscore/5d6414d32c7f870017924f82`
+				`https://lambda-guess-who.herokuapp.com/api/user/highscore/${userId}`
 			)
 			.then(res => {
 				console.log("score data", res.data);

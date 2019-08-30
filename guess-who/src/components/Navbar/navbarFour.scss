@@ -23,12 +23,11 @@
 
     .ui.accordion {
         text-align: center;
-        color: #173630;
+        color: #173ad4 !important;
         font-family: 'Lato', sans-serif;
         // font-family: "Rubik", sans-serif;
         width: 264px;
         height: 936px;
-        margin: 0;
     };
     
     .ui.accordion .title:not(.ui) {
@@ -41,6 +40,11 @@
         line-height: 19px;	
         text-align: center;
         padding-left: 5rem;
+        margin-top: 0.4rem;
+
+        .dropdown.icon {
+            margin-top: 0.2rem;
+        }
     };
     
     .sideNavButtons {
@@ -75,9 +79,8 @@
     a, .editProfileBtn {
         height: 20px;
         width: 79px;	
-        color: #233A6D;	
+        color: #173ad4 !important;
         font-family: Lato;
-        // font-family: "Rubik", sans-serif;
         font-size: 16px;
         line-height: 20px;
     }
