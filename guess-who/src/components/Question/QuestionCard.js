@@ -47,7 +47,7 @@ const QuestionCard = props => {
       return defaultClass;
     }
   }
-
+//
   return (
     <div onClick={click}>
       <Card className={setClass()}>
