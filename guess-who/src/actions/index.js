@@ -56,7 +56,11 @@ export const signup = user => dispatch => {
     .post(SIGNUP_BACKEND_POINT, user)
     .then(res => {
       console.log("response ", res);
-      localStorage.setItem("token", res.data.token);
+      let usernameData = JSON.parse(res.config.data).username;
+      let tokenData = parseJwt(res.data.token);
+      console.log(tokenData);
+      localStorage.setItem("username", usernameData);
+      localStorage.setItem("userId", tokenData.user.id);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
       return true;
     })

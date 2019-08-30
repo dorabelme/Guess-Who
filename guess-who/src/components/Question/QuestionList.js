@@ -32,7 +32,7 @@ const QuestionList = props => {
   const close = () => setOpenState({ open: false });
 
   function delay(f) {
-    setTimeout(f, 1000);
+    setTimeout(f, 2000);
   }
 
   function reset() {
@@ -63,8 +63,6 @@ const QuestionList = props => {
           getHighScores();
           show("mini")();
         }
-        getHighScores();
-        show("mini")();
       });
     }
   }
@@ -94,10 +92,8 @@ const QuestionList = props => {
         <div className="opponents-div-1">
           <Label color="teal" image>
             {/* <img src="./birdLogo.jpeg" /> */}
-            {props.username}
-            <Label.Detail>
-              Personal Highest Score: {props.personalHighScore}
-            </Label.Detail>
+            {/* {props.username} */}
+            <Label.Detail>High Score: {props.personalHighScore}</Label.Detail>
           </Label>
         </div>
       </div>
@@ -145,7 +141,6 @@ const QuestionList = props => {
     </Card>
   );
 };
-
 const mapStateToProps = state => {
   return {
     ...state,
@@ -154,7 +149,6 @@ const mapStateToProps = state => {
     userId: localStorage.getItem("userId")
   };
 };
-
 export default connect(
   mapStateToProps,
   {
