@@ -113,6 +113,7 @@ export const getTweets = () => dispatch => {
     .catch(err => {
       console.log(err);
       dispatch({ type: GET_TWEETS_FAILURE, payload: err });
+      throw err
     });
 };
 
