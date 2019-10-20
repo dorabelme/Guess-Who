@@ -1,11 +1,11 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const LOGIN_BACKEND_POINT =
-  "https://lambda-guess-who.herokuapp.com/api/auth/login";
+  "https://lambda-guess-who-app.herokuapp.com/api/auth/login";
 const SIGNUP_BACKEND_POINT =
-  "https://lambda-guess-who.herokuapp.com/api/auth/register";
+  "https://lambda-guess-who-app.herokuapp.com/api/auth/register";
 const TWITTER_BACKEND_POINT =
-  "https://lambda-guess-who.herokuapp.com/api/question";
+  "https://lambda-guess-who-app.herokuapp.com/api/question";
 
 export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
