@@ -8,10 +8,10 @@ import NavbarTwo from "../Navbar/Navbar2";
 import FriendCard from "./FriendCard";
 
 const MainPage = ({ history, userName, highScore }) => {
-  const [richards, setRichard] = useState(0);
-  const [dorab, setDorab] = useState(0);
-  const [deejay, setDeejay] = useState(0);
-  const [taran, setTaran] = useState(0);
+  const [richards, setRichard] = useState(6);
+  const [dorab, setDorab] = useState(8);
+  const [deejay, setDeejay] = useState(10);
+  const [taran, setTaran] = useState(4);
 
   const scores = [richards, dorab, deejay, taran];
 
