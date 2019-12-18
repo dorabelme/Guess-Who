@@ -7,7 +7,7 @@ Guess Who? is a a full-stack web application game. The player has to match a 202
 
 ## Short demo:
 
-![Image from giphy](twitter_game_gif.mov)
+![Modal-examples](twitter_game.gif)
 
 Other features:
 
