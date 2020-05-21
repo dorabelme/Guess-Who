@@ -116,7 +116,7 @@ const MainPage = ({ history, userName, highScore }) => {
         <Link to="/profile">
           <div className="profile-pin">
             <Image
-              src="https://www.m2.com.lb/modules//smartblog/images/139.jpg"
+              src="https://www.problogdesign.com/wp-content/uploads/2009/08/pracktica.jpg"
               size="small"
             />
           </div>
